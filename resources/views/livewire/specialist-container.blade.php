@@ -4,5 +4,6 @@
         [
             'specialist' => $specialist
         ])
+
     @endforeach
 </div>

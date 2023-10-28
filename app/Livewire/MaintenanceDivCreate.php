@@ -4,10 +4,10 @@ namespace App\Livewire;
 
 use Livewire\Component;
 
-class Specialist extends Component
+class MaintenanceDivCreate extends Component
 {
     public function render()
     {
-        return view('livewire.specialist');
+        return view('livewire.maintenance-div-create');
     }
 }
