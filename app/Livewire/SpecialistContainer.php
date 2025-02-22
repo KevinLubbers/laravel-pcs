@@ -15,7 +15,7 @@ class SpecialistContainer extends Component
     }
 
    
-    #[On("edited-name")]
+    #[On(event: "edited-name")]
     public function editName($id, $name){
 
         $this->name = $name;

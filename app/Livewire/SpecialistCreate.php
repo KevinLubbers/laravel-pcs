@@ -16,12 +16,12 @@ class SpecialistCreate extends Component
             "name"=> "required|min:8|max:50",
             "email"=> "required|email|unique:users",
         ]);
-        request()->session()->flash('success','Specialist Created Successfully!');
         $new = User::create([
             'name' => $this->name,
             'email'=> $this->email,
             'password'=> Hash::make('password'),
         ]);
+        request()->session()->flash('success','Specialist Created Successfully!');
         $this->reset(['name','email']);
         $this->dispatch('specialist-created', specialist: $new);
         

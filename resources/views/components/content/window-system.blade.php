@@ -10,34 +10,11 @@
 </div>
 
 <div class="bg-gray-200 dark:bg-gray-800 bg-opacity-25 grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 p-6 lg:p-8">
-    <div>
-        <div class="flex items-centertext-sm leading-relaxedml-3 text-xl font-semibold text-gray-900 dark:text-white">
-            Manufacturer Overview List:
-        </div>
-
-        <p class="mt-4 text-gray-500 dark:text-gray-400 text-sm leading-relaxed">
-           <!--add @ livewire tags here to generate each form / action -->
-           @livewire('specialist-container')
-           
-        </p>
-
-        <p class="mt-4 text-sm">
-           <!--footer / redirect--> 
-        </p>
-    </div>
+    
 
     <div class="">
+
         <div class="flex items-center">
-            <h2 class="text-xl font-semibold text-gray-900 dark:text-white">
-                Create New Manufacturer:
-            </h2>
-        </div>
-
-        <p class="mt-4  text-sm leading-relaxed">
-            @livewire('maintenance-man-create')
-        </p>
-
-        <div class="flex items-center mt-4">
             <h2 class="text-xl font-semibold text-gray-900 dark:text-white">
                 Create New Division:
             </h2>
@@ -55,5 +32,32 @@
         <p class="mt-4  text-sm leading-relaxed">
             @livewire('maintenance-model-create')
         </p>
+
+        <div class="flex items-center mt-4">
+            <h2 class="text-xl font-semibold text-gray-900 dark:text-white">
+                Create New Task:
+            </h2>
+        </div>
+
+        <p class="mt-4  text-sm leading-relaxed">
+            @livewire('maintenance-task-create')
+        </p>
     </div>
+
+    <div>
+        <div class="flex items-centertext-sm leading-relaxedml-3 text-xl font-semibold text-gray-900 dark:text-white">
+            Overview List:
+        </div>
+
+        <p class="mt-4 text-gray-500 dark:text-gray-400 text-sm leading-relaxed">
+           <!--add @ livewire tags here to generate each form / action -->
+           <livewire:maintenance-list lazy />
+           
+        </p>
+
+        <p class="mt-4 text-sm">
+           <!--footer / redirect--> 
+        </p>
+    </div>
+</div>
 

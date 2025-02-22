@@ -29,6 +29,15 @@ class User extends Authenticatable
         'password',
     ];
 
+    public function getName(){
+        return $this->name;}
+    public function divisions(){
+        return $this->hasMany(Division::class, 'specialist_id');
+    }
+
+    public function models(){
+        return $this->hasManyThrough(CarModel::class, Division::class);}
+
     /**
      * The attributes that should be hidden for serialization.
      *

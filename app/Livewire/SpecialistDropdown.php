@@ -13,9 +13,10 @@ class SpecialistDropdown extends Component
     public function render()
     {
 
-        $this->specialists = User::all()->sortBy('created_at');
+        $this->specialists = User::pluck( 'name','id')->all();
         return view('livewire.specialist-dropdown', [
-            'specialists' => $this->specialists
+            'specialists' => $this->specialists,
+            'unique_id' => uniqid()
         ]);
     }
 }
