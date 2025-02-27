@@ -10,35 +10,33 @@
 </div>
 
 <div class="bg-gray-200 dark:bg-gray-800 bg-opacity-25 grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 p-6 lg:p-8">
-    <div>
-        <div class="flex items-centertext-sm leading-relaxedml-3 text-xl font-semibold text-gray-900 dark:text-white">
-            Specialist List:
-        </div>
-
-        <p class="mt-4 text-gray-500 dark:text-gray-400 text-sm leading-relaxed">
-           <!--add @ livewire tags here to generate each form / action -->
-           @livewire('specialist-container')
-           
-        </p>
-
-        <p class="mt-4 text-sm">
-           <!--footer / redirect--> 
-        </p>
-    </div>
 
     <div class="">
-        <div class="flex items-center">
-            <h2 class="text-xl font-semibold text-gray-900 dark:text-white">
-                Create New Specialist:
-            </h2>
-        </div>
+            <div class="flex items-center">
+                <h2 class="text-xl font-semibold text-gray-900 dark:text-white">
+                    Create New Specialist:
+                </h2>
+            </div>
 
-        <p class="mt-4  text-sm leading-relaxed">
-            @livewire('specialist-create')
-        </p>
+            <p class="mt-4  text-sm leading-relaxed">
+                @livewire('specialist-create')
+            </p>
 
-        <p class="mt-4 text-sm text-gray-900 dark:text-white leading-relaxed">
-            Initial Password is set to: <b>password</b> for all new specialists
-        </p>
+            <p class="mt-4 text-sm text-gray-900 dark:text-white leading-relaxed">
+                Initial Password is set to: <b>password</b> for all new specialists
+            </p>
+
+
+            <div class="flex items-center mt-4">
+                <h2 class="text-xl font-semibold text-gray-900 dark:text-white">
+                    Create New Task:
+                </h2>
+            </div>
+
+            <p class="mt-4  text-sm leading-relaxed">
+                @livewire('maintenance-task-create')
+            </p>
     </div>
+    <livewire:combolist lazy />
+</div>
 

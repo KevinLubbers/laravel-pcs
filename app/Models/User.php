@@ -36,7 +36,24 @@ class User extends Authenticatable
     }
 
     public function models(){
-        return $this->hasManyThrough(CarModel::class, Division::class);}
+        return $this->hasManyThrough(CarModel::class, Division::class);
+    }
+     
+    public function tasksAsSpecialist() {
+        return $this->hasMany(TicketTask::class, 'specialist_id');
+    }
+
+    // Relationship where the user is the cc in the task
+    public function tasksAsCc() {
+        return $this->hasMany(TicketTask::class, 'cc_id');
+    }
+
+    // Combined relationship: tasks where the user is either the specialist or cc
+    public function tasks() {
+        return $this->tasksAsSpecialist()->union($this->tasksAsCc());
+    }
+    
+
 
     /**
      * The attributes that should be hidden for serialization.

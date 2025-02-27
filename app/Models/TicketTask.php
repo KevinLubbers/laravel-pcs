@@ -14,7 +14,13 @@ class TicketTask extends Model
          'cc_id',
          'name',
      ];
-    public function users(){
-        return $this->belongsToMany(User::class);
+    
+    public function specialist() {
+        return $this->belongsTo(User::class, 'specialist_id');
+    }
+
+    // Define relationship for cc_id
+    public function cc() {
+        return $this->belongsTo(User::class, 'cc_id');
     }
 }

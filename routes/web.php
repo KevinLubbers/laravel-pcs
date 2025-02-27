@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Livewire\Volt\Volt;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,6 +17,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('pages.landing');
 });
+Route::get('/faq', function () {
+    return view('pages.faq');
+})->name('faq');
 
 Route::middleware([
     'auth:sanctum',

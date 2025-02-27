@@ -13,17 +13,46 @@ class MaintenanceList extends Component
 {
     use WithPagination;
     public $divisions;
+    public $specialists;
+    
+    public $dark= 'imgs/edit-dark.png';
+    public $light = 'imgs/edit-light.png';
+    public $dDark = 'imgs/delete-dark.png';
+    public $dLight = 'imgs/delete-light.png';
 
     public function mount(){
-        $this->specialists = User::pluck( 'name')->all();
-        $this->divisions = Division::pluck( 'name')->all();
-        $this->models = CarModel::pluck( 'name')->all();
+        $this->specialists = User::pluck( 'name', 'id')->all();
     }
 
+    public function deleteModel($id){
+        $model = CarModel::find($id);
+        $model->delete();
+        request()->session()->flash('success',$model->name .' Deleted Successfully!');
+        $this->dispatch('model-deleted', model: $model);
+    }
 
+    public function deleteSpecialist($id){
+        $division= Division::find($id);
+        $division->specialist_id = null;
+        $division->save();
+        request()->session()->flash('success','Specialist Deleted Successfully from '. $division->name . ' Division!');
+    }
+
+    public function deleteDivision($id){
+        $division= Division::find($id);
+        $division->delete();
+        request()->session()->flash('success','Division Deleted Successfully!');
+    }
+
+    public function editSpecialist($id){
+         
+    }
+    public function editDivision($id){
+        
+    }
     public function placeholder(){
-        return <<<'blade'
-            <div class="pl-4 mt-1 block mb-2 rounded-md text-gray-600 border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 shadow-sm">
+        return <<<'HTML'
+            <div class="pl-4 mt-1 mb-2 rounded-md text-gray-600 border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 shadow-sm flex justify-center items-center">
             <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50">
             <circle cx="25" cy="25" r="20" stroke="#ddd" stroke-width="5" fill="none" />
             <circle cx="25" cy="25" r="20" stroke="#2d7356" stroke-width="5" stroke-linecap="round" fill="none" stroke-dasharray="126" stroke-dashoffset="30">
@@ -32,9 +61,10 @@ class MaintenanceList extends Component
             </svg>
             <div>
 
-        blade;
+        HTML;
     }
     #[On(event: "model-created")]
+    #[On(event: "division-created")]
     public function render()
     {
         /* WRONG WAY TO DO IT
@@ -63,19 +93,43 @@ class MaintenanceList extends Component
         }
 
 
-            return <<<'blade'
+            return <<<'HTML'
                 <div class="pl-4 mt-1 block mb-2 rounded-md text-gray-600 border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 shadow-sm">
-                
-                    <div class="flex flex-col">
+                    @if(session('success'))
+                        <div class="mb-4 bg-green-100 border border-green-300 text-green-800 px-4 py-3 rounded relative dark:text-green-300 dark:border-green-600 dark:bg-green-900">
+                            {{session('success')}}
+                        </div>
+                    @endif
+                    <div class="flex flex-col" x-data="{unlockClicked: false, deleteClicked: false}">
                         
                         @forelse($divisions as $division)
                 
                         
-                            <div><u><b>{{$division->name}}</u></b>&nbsp;</div>
-                            <div>├───&nbsp;<i>{{$division->users->name ?? 'No Specialist'}}</i></div>
+                            <div class="flex flex-row items-center">
+                            <div class="mr-4"><u><b>{{$division->name}}</u></b></div>
+                            <div class="ml-4"><img @click="deleteClicked = !deleteClicked" wire:click="deleteDivision({{$division->id}})" wire:confirm="Are you sure you want to DELETE - {{$division->name}}?"  height="16px" width="16px" class="mr-1 cursor-pointer" :src="!darkMode ? '{{url($dLight)}}' : '{{url($dDark)}}'" ></div>
+                            </div>
+                            <div class="flex flex-row items-center">
+                                ├───&nbsp;<i>{{$division->users->name ?? 'No Specialist'}}</i>
+                                <img @click="unlockClicked = !unlockClicked" wire:click="editDivision({{$division->id}})" height="16px" width="16px" class="mr-2 ml-4 cursor-pointer" :src="!darkMode ? '{{url($light)}}' : '{{url($dark)}}'" >
+                                @isset($division->users->name)
+                                    <img @click="deleteClicked = !deleteClicked" wire:click="deleteSpecialist({{$division->id}})" wire:confirm="Are you sure you want to DELETE - {{$division->users->name}} from {{$division->name}}?"  height="16px" width="16px" class="mr-1 cursor-pointer" :src="!darkMode ? '{{url($dLight)}}' : '{{url($dDark)}}'" >
+                                @endisset
+                            </div>
                     
                             @forelse($division->models as $model)
-                                <div>├──────────────────&nbsp;{{$model->name}}</div>
+
+                            
+
+
+                                <div class="flex flex-row items-center">
+                                    ├──────────────────&nbsp;{{$model->name}}
+                                    
+                                    {{--<img @click="unlockClicked = !unlockClicked" wire:click="$dispatch('edit-model', id: '{{$model->id}}', name: '{{$model->name}}')" height="16px" width="16px" class="mr-2 ml-4 cursor-pointer" :src="!darkMode ? '{{url($light)}}' : '{{url($dark)}}'" >--}}
+                                    <img @click="deleteClicked = !deleteClicked" wire:click="deleteModel({{$model->id}})" wire:confirm="Are you sure you want to DELETE - {{$model->name}}"  height="16px" width="16px" class="mr-1 ml-2 cursor-pointer" :src="!darkMode ? '{{url($dLight)}}' : '{{url($dDark)}}'" >
+                                </div>
+                               
+
                             @empty
                                 <div>├&nbsp;<small>No models found</small></div>
                             @endforelse
@@ -85,6 +139,6 @@ class MaintenanceList extends Component
                         @endforelse
                     </div>
                 </div>
-            blade;
+            HTML;
     }
 }

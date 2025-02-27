@@ -33,15 +33,6 @@
             @livewire('maintenance-model-create')
         </p>
 
-        <div class="flex items-center mt-4">
-            <h2 class="text-xl font-semibold text-gray-900 dark:text-white">
-                Create New Task:
-            </h2>
-        </div>
-
-        <p class="mt-4  text-sm leading-relaxed">
-            @livewire('maintenance-task-create')
-        </p>
     </div>
 
     <div>

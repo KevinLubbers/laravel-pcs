@@ -27,7 +27,7 @@ class MaintenanceTaskCreate extends Component
             'cc_id'=> $this->cc_id,
         ]);
         $this->reset(['name','specialist_id','cc_id']);
-        $this->dispatch('task-created', task: $new);
+        $this->dispatch('task-created')->to(TaskList::class);
         request()->session()->flash('success','Task Created Successfully!');
     }
 
@@ -44,7 +44,7 @@ class MaintenanceTaskCreate extends Component
         <x-label for="name" value="{{ __('Task Name') }}" />
         <x-input wire:model="name" class="mt-1 block w-full mb-2" type="text" autocomplete="off" placeholder="Enter Task Name" id="name" name="name" />
         @error('name')
-            <p class="text-red-400 text-xs mt-2 mb-2">{{$message}}</p>
+            <x-input-error for="name" />
         @enderror
 
         <div>

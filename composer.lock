@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6f35b5227915ae7a2d00aaa3b289cf47",
+    "content-hash": "072bf99740fae4d623cb16db1187041a",
     "packages": [
         {
             "name": "bacon/bacon-qr-code",
@@ -2264,39 +2264,39 @@
         },
         {
             "name": "livewire/volt",
-            "version": "v1.3.3",
+            "version": "v1.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/livewire/volt.git",
-                "reference": "f777801cfdd24b6fa3d4b572413216dfb12d9e2e"
+                "reference": "ba0dcf7d9ee689b790647ccdba376c97a5e07e7d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/livewire/volt/zipball/f777801cfdd24b6fa3d4b572413216dfb12d9e2e",
-                "reference": "f777801cfdd24b6fa3d4b572413216dfb12d9e2e",
+                "url": "https://api.github.com/repos/livewire/volt/zipball/ba0dcf7d9ee689b790647ccdba376c97a5e07e7d",
+                "reference": "ba0dcf7d9ee689b790647ccdba376c97a5e07e7d",
                 "shasum": ""
             },
             "require": {
-                "laravel/framework": "^10.17|^11.0",
+                "laravel/framework": "^10.27|^11.0",
                 "livewire/livewire": "^3.0",
                 "php": "^8.1"
             },
             "require-dev": {
                 "laravel/folio": "^1.1",
                 "mockery/mockery": "^1.6",
-                "orchestra/testbench": "^8.6.2",
+                "orchestra/testbench": "^8.15.0",
                 "pestphp/pest": "^2.9.5",
                 "phpstan/phpstan": "^1.10"
             },
             "type": "library",
             "extra": {
-                "branch-alias": {
-                    "dev-master": "1.x-dev"
-                },
                 "laravel": {
                     "providers": [
                         "Livewire\\Volt\\VoltServiceProvider"
                     ]
+                },
+                "branch-alias": {
+                    "dev-master": "1.x-dev"
                 }
             },
             "autoload": {
@@ -2332,7 +2332,7 @@
                 "issues": "https://github.com/livewire/volt/issues",
                 "source": "https://github.com/livewire/volt"
             },
-            "time": "2023-09-25T00:46:14+00:00"
+            "time": "2023-11-28T15:00:10+00:00"
         },
         {
             "name": "mobiledetect/mobiledetectlib",
@@ -8761,12 +8761,12 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {},
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
         "php": "^8.1"
     },
-    "platform-dev": [],
-    "plugin-api-version": "2.2.0"
+    "platform-dev": {},
+    "plugin-api-version": "2.6.0"
 }
