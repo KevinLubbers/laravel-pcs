@@ -5,7 +5,7 @@
     </h1>
 
     <p class="mt-6 text-gray-500 dark:text-gray-400 leading-relaxed">
-        Manage the Specialists in the Team and their assigned models, divisions, and tasks.
+        Manage the Specialists in the Team and their assigned tasks.
     </p>
 </div>
 
@@ -37,6 +37,8 @@
                 @livewire('maintenance-task-create')
             </p>
     </div>
+
     <livewire:combolist lazy />
+
 </div>
 

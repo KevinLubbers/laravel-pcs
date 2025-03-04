@@ -50,7 +50,7 @@ class User extends Authenticatable
 
     // Combined relationship: tasks where the user is either the specialist or cc
     public function tasks() {
-        return $this->tasksAsSpecialist()->union($this->tasksAsCc());
+        return $this->tasksAsSpecialist()->getQuery()->union($this->tasksAsCc()->getQuery());
     }
     
 

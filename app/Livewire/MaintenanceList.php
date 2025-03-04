@@ -20,6 +20,7 @@ class MaintenanceList extends Component
     public $dDark = 'imgs/delete-dark.png';
     public $dLight = 'imgs/delete-light.png';
 
+
     public function mount(){
         $this->specialists = User::pluck( 'name', 'id')->all();
     }
@@ -64,7 +65,9 @@ class MaintenanceList extends Component
         HTML;
     }
     #[On(event: "model-created")]
+    #[On(event: "model-edited")]
     #[On(event: "division-created")]
+    #[On(event: "division-edited")]
     public function render()
     {
         /* WRONG WAY TO DO IT
@@ -107,13 +110,14 @@ class MaintenanceList extends Component
                         
                             <div class="flex flex-row items-center">
                             <div class="mr-4"><u><b>{{$division->name}}</u></b></div>
+
+                            <div class="ml-4"><img @click="$dispatch('edit-division', {id: {{$division->id}}, name: '{{$division->name}}', specialist: '{{$division->specialist_id}}', title: 'Edit Division'})" height="16px" width="16px" class="mr-1 cursor-pointer" :src="!darkMode ? '{{url($light)}}' : '{{url($dark)}}'" ></div>
                             <div class="ml-4"><img @click="deleteClicked = !deleteClicked" wire:click="deleteDivision({{$division->id}})" wire:confirm="Are you sure you want to DELETE - {{$division->name}}?"  height="16px" width="16px" class="mr-1 cursor-pointer" :src="!darkMode ? '{{url($dLight)}}' : '{{url($dDark)}}'" ></div>
                             </div>
                             <div class="flex flex-row items-center">
                                 ├───&nbsp;<i>{{$division->users->name ?? 'No Specialist'}}</i>
-                                <img @click="unlockClicked = !unlockClicked" wire:click="editDivision({{$division->id}})" height="16px" width="16px" class="mr-2 ml-4 cursor-pointer" :src="!darkMode ? '{{url($light)}}' : '{{url($dark)}}'" >
                                 @isset($division->users->name)
-                                    <img @click="deleteClicked = !deleteClicked" wire:click="deleteSpecialist({{$division->id}})" wire:confirm="Are you sure you want to DELETE - {{$division->users->name}} from {{$division->name}}?"  height="16px" width="16px" class="mr-1 cursor-pointer" :src="!darkMode ? '{{url($dLight)}}' : '{{url($dDark)}}'" >
+                                    <img @click="deleteClicked = !deleteClicked" wire:click="deleteSpecialist({{$division->id}})" wire:confirm="Are you sure you want to DELETE - {{$division->users->name}} from {{$division->name}}?"  height="16px" width="16px" class="mr-1 ml-4 cursor-pointer" :src="!darkMode ? '{{url($dLight)}}' : '{{url($dDark)}}'" >
                                 @endisset
                             </div>
                     
@@ -125,7 +129,7 @@ class MaintenanceList extends Component
                                 <div class="flex flex-row items-center">
                                     ├──────────────────&nbsp;{{$model->name}}
                                     
-                                    {{--<img @click="unlockClicked = !unlockClicked" wire:click="$dispatch('edit-model', id: '{{$model->id}}', name: '{{$model->name}}')" height="16px" width="16px" class="mr-2 ml-4 cursor-pointer" :src="!darkMode ? '{{url($light)}}' : '{{url($dark)}}'" >--}}
+                                    <img @click="unlockClicked = !unlockClicked" wire:click="$dispatch('edit-model', {id: '{{$model->id}}', name: '{{$model->name}}', specialist: '{{$model->specialist_id}}', title: 'Edit Model'})" height="16px" width="16px" class="mr-2 ml-4 cursor-pointer" :src="!darkMode ? '{{url($light)}}' : '{{url($dark)}}'" >
                                     <img @click="deleteClicked = !deleteClicked" wire:click="deleteModel({{$model->id}})" wire:confirm="Are you sure you want to DELETE - {{$model->name}}"  height="16px" width="16px" class="mr-1 ml-2 cursor-pointer" :src="!darkMode ? '{{url($dLight)}}' : '{{url($dDark)}}'" >
                                 </div>
                                
@@ -138,6 +142,7 @@ class MaintenanceList extends Component
                             <div>├&nbsp;<small>No divisions found</small></div>
                         @endforelse
                     </div>
+
                 </div>
             HTML;
     }

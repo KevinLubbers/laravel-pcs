@@ -14,6 +14,7 @@ class TaskList extends Component
     
     public $tasks;
     public $specialists;
+    
 
     public $unlocked = "imgs/unlocked.png";
     public $locked = "imgs/locked.png";
@@ -21,7 +22,10 @@ class TaskList extends Component
     public $light = 'imgs/edit-light.png';
     public $dDark = 'imgs/delete-dark.png';
     public $dLight = 'imgs/delete-light.png';
-
+    public function __construct() {
+        $this->tasks = TicketTask::select('id','name', 'specialist_id', 'cc_id')->with(['specialist:id,name','cc:id,name'])->get();
+        $this->specialists = User::pluck('name','id')->all();
+    }
     public function delete($id){
         $task = TicketTask::findOrFail($id);
         $task->delete();
@@ -80,14 +84,14 @@ class TaskList extends Component
         @forelse($tasks as $task)
         <div wire:key="task-{{$task->id}}" class="flex flex-row flex-wrap gap-6 justify-between p-6 items-center" x-data="{unlockClicked: false, deleteClicked: false, taskId: '{{$task->id}}', specialist: '{{$task->specialist_id}}', cc: '{{$task->cc_id}}'}">
             <div class="flex flex-col w-full">
-                <div x-show="show" x-data="{show: true, id: '{{$task->id}}', name: '{{$task->name}}' }"  class="flex flex-row items-center w-full" >
+                <div x-show="showMe" x-data="{ showMe: true, id: '{{$task->id}}', name: '{{$task->name}}' }"  class="flex flex-row items-center w-full" >
                     <div class="flex flex-col w-full">
                         <x-input x-ref="input" x-init="$watch('name', value => $dispatch('edited-task-name', {id: id, name: name}))" x-model.debounce.1500ms="name"  id="name{{$task->id}}"  type="text" class="block w-full" x-bind:disabled="!unlockClicked" />
                     </div>
                     <div class="flex flex-col items-center">
                         <div class="flex flex-row">
                             <img @click="unlockClicked = !unlockClicked; $nextTick(() => $refs.input.focus());" height="32px" width="32px" class="mr-1 cursor-pointer" :src="!darkMode ? '{{url($light)}}' : '{{url($dark)}}'" >
-                            <img @click="deleteClicked = !deleteClicked" wire:click="delete({{$task->id}})" wire:confirm="Are you sure you want to DELETE - {{$task->name}}?" @wire:confirm="show = false" height="32px" width="32px" class="mr-1 cursor-pointer" :src="!darkMode ? '{{url($dLight)}}' : '{{url($dDark)}}'" >
+                            <img @click="deleteClicked = !deleteClicked" wire:click="delete({{$task->id}})" wire:confirm="Are you sure you want to DELETE - {{$task->name}}?" @wire:confirm="showMe = false" height="32px" width="32px" class="mr-1 cursor-pointer" :src="!darkMode ? '{{url($dLight)}}' : '{{url($dDark)}}'" >
                         </div>
 
                     </div>
@@ -133,6 +137,7 @@ class TaskList extends Component
                     @endforeach
                 </select>
             </div>
+            <hr>
         </div>
         @empty
         @endforelse

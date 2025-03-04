@@ -5,7 +5,7 @@
 
 
     <p class="mt-6 text-gray-500 dark:text-gray-400 leading-relaxed">
-        Create, Edit, or Delete Manufacturers, Divisions, Models and Tasks
+        Create, Edit, or Delete Divisions and Models
     </p>
 </div>
 
@@ -36,8 +36,13 @@
     </div>
 
     <div>
+
         <div class="flex items-centertext-sm leading-relaxedml-3 text-xl font-semibold text-gray-900 dark:text-white">
             Overview List:
+        </div>
+
+        <div>
+            <livewire:edit-modal />
         </div>
 
         <p class="mt-4 text-gray-500 dark:text-gray-400 text-sm leading-relaxed">
@@ -47,7 +52,7 @@
         </p>
 
         <p class="mt-4 text-sm">
-           <!--footer / redirect--> 
+           <!--footer / redirect-->
         </p>
     </div>
 </div>
