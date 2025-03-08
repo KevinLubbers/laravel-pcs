@@ -15,6 +15,7 @@
 </span>
 
 @once
+<div x-data="{ show: @entangle('confirmingPassword')}">
 <x-dialog-modal wire:model.live="confirmingPassword">
     <x-slot name="title">
         {{ $title }}
@@ -43,4 +44,5 @@
         </x-button>
     </x-slot>
 </x-dialog-modal>
+</div>
 @endonce

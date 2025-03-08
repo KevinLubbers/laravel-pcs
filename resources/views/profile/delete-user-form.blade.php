@@ -1,3 +1,4 @@
+<div x-data="{ show: @entangle('confirmingUserDeletion')}">
 <x-action-section>
     <x-slot name="title">
         {{ __('Delete Account') }}
@@ -51,3 +52,4 @@
         </x-dialog-modal>
     </x-slot>
 </x-action-section>
+</div>

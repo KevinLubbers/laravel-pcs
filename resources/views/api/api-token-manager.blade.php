@@ -93,6 +93,7 @@
         </div>
     @endif
 
+    <div x-data="{ show: @entangle('displayingToken')}">
     <!-- Token Value Modal -->
     <x-dialog-modal wire:model.live="displayingToken">
         <x-slot name="title">
@@ -117,7 +118,9 @@
             </x-secondary-button>
         </x-slot>
     </x-dialog-modal>
+    </div>
 
+    <div x-data="{ show: @entangle('managingApiTokenPermissions')}">
     <!-- API Token Permissions Modal -->
     <x-dialog-modal wire:model.live="managingApiTokenPermissions">
         <x-slot name="title">
@@ -145,7 +148,9 @@
             </x-button>
         </x-slot>
     </x-dialog-modal>
+    </div>
 
+    <div x-data="{ show: @entangle('confirmingApiTokenDeletion')}">
     <!-- Delete Token Confirmation Modal -->
     <x-confirmation-modal wire:model.live="confirmingApiTokenDeletion">
         <x-slot name="title">
@@ -166,4 +171,5 @@
             </x-danger-button>
         </x-slot>
     </x-confirmation-modal>
+    </div>
 </div>

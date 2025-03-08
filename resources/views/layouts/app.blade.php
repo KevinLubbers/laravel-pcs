@@ -19,6 +19,14 @@ x-bind:class="{'dark': darkMode}">
 
         <!-- Styles -->
         @livewireStyles
+        <link rel="preload" href="{{ url('imgs/sun.png')}}" as="image">
+        <link rel="preload" href="{{ url('imgs/moon.png')}}" as="image">
+        <link rel="preload" href="{{ url('imgs/edit-dark.png')}}" as="image">
+        <link rel="preload" href="{{ url('imgs/edit-light.png')}}" as="image">
+        <link rel="preload" href="{{ url('imgs/delete-dark.png')}}" as="image">
+        <link rel="preload" href="{{ url('imgs/delete-light.png')}}" as="image">
+        <link rel="preload" href="{{ url('imgs/unlocked.png')}}" as="image">
+        <link rel="preload" href="{{ url('imgs/locked.png')}}" as="image">
     </head>
             <body class="font-sans antialiased">
    

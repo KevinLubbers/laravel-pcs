@@ -73,7 +73,7 @@ class EditModal extends Component
                 {{session('success')}}
             </div>
         @endif
-        <div x-data="{show: $wire.entangle('isOpen'), id: '', name: '', specialist: '', title: '' }" x-show="show" 
+        <div x-data="{ show: @entangle('isOpen'), id: '', name: '', specialist: '', title: '' }" x-show="show"
         @edit-division.window="show = !show, id = $event.detail.id, name = $event.detail.name, specialist = $event.detail.specialist, title = $event.detail.title"
         @edit-model.window="show = !show, id = $event.detail.id, name = $event.detail.name, specialist = $event.detail.specialist, title = $event.detail.title"  > 
             <x-dialog-modal>

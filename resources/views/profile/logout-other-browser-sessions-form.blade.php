@@ -61,6 +61,8 @@
             </x-action-message>
         </div>
 
+
+        <div x-data="{ show: @entangle('confirmingLogout')}"> 
         <!-- Log Out Other Devices Confirmation Modal -->
         <x-dialog-modal wire:model.live="confirmingLogout">
             <x-slot name="title">
@@ -94,5 +96,6 @@
                 </x-button>
             </x-slot>
         </x-dialog-modal>
+        </div>
     </x-slot>
 </x-action-section>
