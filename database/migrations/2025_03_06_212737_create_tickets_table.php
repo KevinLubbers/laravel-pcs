@@ -23,7 +23,7 @@ return new class extends Migration
             $table->boolean('info_type')->nullable();
             $table->integer('info_number')->nullable();
             $table->text('details');
-            $table->mediumBinary('attachments')->nullable();
+           // $table->mediumBinary('attachments')->nullable();
             $table->boolean('status')->default(0);
             $table->timestamps();
         });

@@ -24,7 +24,6 @@ class Ticket extends Model
         'info_type',
         'info_number',
         'details',
-        'attachments',
         'status',
     ];
 
