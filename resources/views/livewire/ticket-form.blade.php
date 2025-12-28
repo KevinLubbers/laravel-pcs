@@ -22,21 +22,32 @@ new class extends Component {
     public $details;
     public $status;
     
-    public function determineSpecialist(){
-        if ($this->task) {
-            return TicketTask::find($this->task)?->specialist_id;
+    public function determineSpecialist()
+{
+    if ($this->task) {
+        $specialist = TicketTask::find($this->task)?->specialist_id;
+        if ($specialist) {
+            return $specialist;
         }
-
-        if ($this->division) {
-            return Division::find($this->division)?->specialist_id;
-        }
-
-        if ($this->model) {
-            return CarModel::find($this->model)?->specialist_id;
-        }
-
-        return null;
     }
+
+    if ($this->division) {
+        $specialist = Division::find($this->division)?->specialist_id;
+        if ($specialist) {
+            return $specialist;
+        }
+    }
+
+    if ($this->model) {
+        $specialist = CarModel::find($this->model)?->specialist_id;
+        if ($specialist) {
+            return $specialist;
+        }
+    }
+
+    return null;
+}
+
     public function create(){
     $this->validate([
         'email' => [
@@ -68,8 +79,8 @@ new class extends Component {
     ]);
     $this->reset();
     $this->dispatch('ticket-created', ticket: $new);
-    request()->session()->flash('success','Ticket Created Successfully!');
-
+    session()->flash('success','Ticket Created Successfully!');
+    return redirect()->to('/');
 	}
     public function mount(){
         $this->tasks = TicketTask::all();
@@ -82,6 +93,7 @@ new class extends Component {
     }
 }; ?>
 
+<form wire:submit.prevent="create">
 <div>
     @if(session('success'))
         <div class="mb-4 bg-green-100 border border-green-300 text-green-800 px-4 py-3 rounded relative dark:text-green-300 dark:border-green-600 dark:bg-green-900">{{session('success')}}</div>
@@ -106,12 +118,11 @@ new class extends Component {
     @enderror
 
     <x-label class="mt-4" for="year" value="{{ __('Year') }}" />
-    <select style="" wire:model="year" class="mt-1 block mb-2 rounded-md text-gray-600 border-gray-300   dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 shadow-sm">
+    <select style="" wire:model.defer="year" class="mt-1 block mb-2 rounded-md text-gray-600 border-gray-300   dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 shadow-sm">
         <option value="0" selected disabled>Select Year</option>
-        <option value="{{($year - 1)}}">{{$year - 1}}</option>
-        <option value="{{$year}}">{{$year}}</option>
-        <option value="{{($year + 1)}}">{{$year + 1}}</option>
-        <option value="{{($year + 2)}}">{{$year + 2}}</option>
+        @foreach(range(now()->year - 1, now()->year + 2) as $y)
+            <option value="{{ $y }}">{{ $y }}</option>
+        @endforeach
     </select>
     @error('year')
         <p class="text-red-400 text-xs mt-2 mb-2">{{$message}}</p>
@@ -182,7 +193,7 @@ new class extends Component {
 
     <input wire:model="attachments" type="file" multiple="multiple" name="file" id="file" class="mt-1 block mb-2 rounded-md text-gray-600 border-gray-300   dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 shadow-sm">
 
-    <x-button class="mt-4" wire:click="create">
+    <x-button class="mt-4" type="submit">
         {{ __('Send') }}
     </x-button>
 
@@ -199,3 +210,4 @@ new class extends Component {
     }
 </style>
 </div>
+</form>

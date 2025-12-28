@@ -20,7 +20,7 @@ return new class extends Migration
             $table->integer('division_id');
             $table->integer('model_id');
             $table->string('misc');
-            $table->boolean('info_type')->nullable();
+            $table->string('info_type')->nullable();
             $table->integer('info_number')->nullable();
             $table->text('details');
            // $table->mediumBinary('attachments')->nullable();
