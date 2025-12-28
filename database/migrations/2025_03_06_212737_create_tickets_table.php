@@ -21,9 +21,9 @@ return new class extends Migration
             $table->integer('model_id');
             $table->string('misc');
             $table->string('info_type')->nullable();
-            $table->integer('info_number')->nullable();
+            $table->string('info_number')->nullable();
             $table->text('details');
-           // $table->mediumBinary('attachments')->nullable();
+            $table->json('attachments')->nullable();
             $table->boolean('status')->default(0);
             $table->timestamps();
         });
