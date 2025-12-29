@@ -25,6 +25,10 @@ class Ticket extends Model
         'info_number',
         'details',
         'status',
+        'attachments',
+    ];
+    protected $casts = [
+        'attachments' => 'array',
     ];
 
     public function users(){

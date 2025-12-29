@@ -11,4 +11,5 @@
 
 <div class="bg-gray-200 dark:bg-gray-800 bg-opacity-25 grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 p-6 lg:p-8">
     <h2 class=" text-gray-500 dark:text-gray-400 leading-relaxed">This is where the dashboard will go</h2>
+    <livewire:ticket-dashboard />
 </div>

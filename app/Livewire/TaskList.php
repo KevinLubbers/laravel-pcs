@@ -86,10 +86,11 @@ class TaskList extends Component
             <div class="flex flex-col w-full">
                 <div x-show="showMe" x-data="{ showMe: true, id: '{{$task->id}}', name: '{{$task->name}}' }"  class="flex flex-row items-center w-full" >
                     <div class="flex flex-col w-full">
+                        <x-label for="name" value="{{ __('Task Name') }}" class="mb-2" />
                         <x-input x-ref="input" x-init="$watch('name', value => $dispatch('edited-task-name', {id: id, name: name}))" x-model.debounce.1500ms="name"  id="name{{$task->id}}"  type="text" class="block w-full" x-bind:disabled="!unlockClicked" />
                     </div>
                     <div class="flex flex-col items-center">
-                        <div class="flex flex-row">
+                        <div class="flex flex-row mt-4">
                             <img @click="unlockClicked = !unlockClicked; $nextTick(() => $refs.input.focus());" height="32px" width="32px" class="mr-1 cursor-pointer" :src="!darkMode ? '{{url($light)}}' : '{{url($dark)}}'" >
                             <img @click="deleteClicked = !deleteClicked" wire:click="delete({{$task->id}})" wire:confirm="Are you sure you want to DELETE - {{$task->name}}?" @wire:confirm="showMe = false" height="32px" width="32px" class="mr-1 cursor-pointer" :src="!darkMode ? '{{url($dLight)}}' : '{{url($dDark)}}'" >
                         </div>
@@ -101,7 +102,7 @@ class TaskList extends Component
             </div>
 
             <div>
-                <x-label for="specialist_id" value="{{ __('Reassign Specialist') }}" />
+                <x-label for="specialist_id" value="{{ __('Assigned Specialist') }}" />
                     <select x-model="specialist"  x-init="$watch('specialist', value => $dispatch('edited-task-specialist', {id: taskId, specialist: specialist}))"  x-bind:disabled="!unlockClicked"  class="mt-1 block mb-2 rounded-md text-gray-600 border-gray-300   dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 shadow-sm">
                         <option disabled value="0">Select Specialist</option>
                         @empty($task->cc_id)
@@ -120,7 +121,7 @@ class TaskList extends Component
             </div>
  
             <div>
-                <x-label for="specialist_id" value="{{ __('Reassign CC Specialist') }}" />
+                <x-label for="specialist_id" value="{{ __('Assigned CC Specialist') }}" />
                 <select x-model="cc" x-init="$watch('cc', value => $dispatch('edited-task-cc', {id: taskId, cc: cc}))"  x-bind:disabled="!unlockClicked" class="mt-1 block mb-2 rounded-md text-gray-600 border-gray-300   dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 shadow-sm">
                     <option disabled value="0">Select Specialist</option>
                     @empty($task->cc_id)
