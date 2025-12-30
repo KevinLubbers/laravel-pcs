@@ -22,16 +22,19 @@ class EditModal extends Component
     
 
     public function editModel($id, $name, $specialist){
+        //dd($id, $name, $specialist);
+
        $model = CarModel::findOrFail($id); 
        $model->name = $name;
        
-       if($model->specialist_id != "" && $model->specialist_id != 0){
+       $model->specialist_id = $specialist;
+       /**if($model->specialist_id != "" && $model->specialist_id != 0 && $model->specialist_id != null){
         $model->specialist_id = $specialist;
        }
        else{
         $model->specialist_id = 0;
-       }
-       dd($model->specialist_id, $specialist);
+       }**/
+       //dd($model->specialist_id, $specialist);
        $model->save();
        request()->session()->flash('success', $model->name . ' Updated Successfully!');
        $this->dispatch('model-edited');
