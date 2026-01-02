@@ -24,7 +24,12 @@ return new class extends Migration
             $table->string('info_number')->nullable();
             $table->text('details');
             $table->json('attachments')->nullable();
-            $table->boolean('status')->default(0);
+            $table->enum('status', [
+                'unresolved',
+                'in_progress',
+                'escalated',
+                'completed',
+            ])->default('unresolved');
             $table->timestamps();
         });
     }

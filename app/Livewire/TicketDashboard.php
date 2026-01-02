@@ -9,7 +9,7 @@ use Livewire\Component;
 class TicketDashboard extends Component
 {
     use WithPagination;
-    public $ticketsPerPage;
+    public int $ticketsPerPage;
 
     public function changePerPage($value)
     {

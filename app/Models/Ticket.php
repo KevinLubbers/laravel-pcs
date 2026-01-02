@@ -34,4 +34,17 @@ class Ticket extends Model
     public function users(){
         return $this->belongsTo(User::class, 'specialist_id');
     }
+    public function tasks()
+    {
+    return $this->belongsTo(TicketTask::class, 'task_id');
+    }
+    public function divisions()
+    {
+    return $this->belongsTo(Division::class, 'division_id');
+    }
+    public function models()
+    {
+    return $this->belongsTo(CarModel::class, 'model_id');
+    }
+
 }

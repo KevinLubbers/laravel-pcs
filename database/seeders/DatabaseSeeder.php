@@ -7,6 +7,8 @@ use Illuminate\Database\Seeder;
 use Database\Seeders\UserSeeder;
 use Database\Seeders\DivisionSeeder;
 use Database\Seeders\TaskSeeder;
+use Database\Seeders\CarModelSeeder;
+use Database\Seeders\TicketSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -24,5 +26,7 @@ class DatabaseSeeder extends Seeder
         $this->call(UserSeeder::class); 
         $this->call(DivisionSeeder::class);
         $this->call(TaskSeeder::class);
+        $this->call(CarModelSeeder::class);
+        $this->call(TicketSeeder::class);
     }
 }

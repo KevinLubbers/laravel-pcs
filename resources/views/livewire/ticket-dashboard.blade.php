@@ -8,9 +8,38 @@
     <p class="mt-4 text-gray-500 dark:text-gray-400 text-sm leading-relaxed">
         <div wire:poll.5s>
             @forelse ($tickets as $ticket)
-            <div class="border p-2 mb-2">
-                <p><strong>Email:</strong> {{ $ticket->email }}</p>
-                <p><strong>Year:</strong> {{ $ticket->year }}</p>
+            <div x-data="{ open:false }" class="border p-2 mb-2">
+                <div class="flex flex-row">
+                    <x-label class="mr-2" for="status" value="{{ __('Status:') }}" />
+                    <span class="inline-block w-3 h-3 rounded-full mr-2
+                        @switch($ticket->status)
+                            @case('unresolved') bg-red-500 @break
+                            @case('in_progress') bg-yellow-400 @break
+                            @case('escalated') bg-blue-500 @break
+                            @case('completed') bg-green-500 @break
+                            @default bg-gray-400
+                        @endswitch">
+                    </span>
+                </div>
+                <p class="flex flex-row"><x-label class="mr-2" for="email" value="{{ __('Assigned To:') }}" />{{ $ticket->users->name ?? "No Specialist"}}</p>
+                <p class="flex flex-row"><x-label class="mr-2" for="email" value="{{ __('Submitted By:') }}" />{{ $ticket->email }}</p>
+                <p class="flex flex-row"><x-label class="mr-2" for="task" value="{{ __('Task:') }}" />{{ $ticket->tasks->name ?? "No Task"}}</p>
+                <hr>
+                <p class="flex flex-row"><x-label class="mr-2" for="year" value="{{ __('Year:') }}" />{{ $ticket->year }}</p>
+                <p class="flex flex-row"><x-label class="mr-2" for="division" value="{{ __('Division:') }}" />{{ $ticket->divisions->name}}</p>
+                <p class="flex flex-row"><x-label class="mr-2" for="model" value="{{ __('Model:') }}" />{{ $ticket->models->name}}</p>
+                <hr>
+                <div class="accordion" x-on:click="open = !open" x-show="!open">Show More Details</div>
+                <div class="accordion" x-show="open" x-transition x-cloak x-on:click="open = !open">
+                    <div class="flex flex-row">
+                        <x-label class="mr-2 accordion" for="details" value="{{ __('Details:') }}" />
+                        {{$ticket->details}}
+                    </div>
+                    <div class="flex flex-row">
+                        <x-label class="mr-2 accordion" for="misc" value="{{ __('Trim / Package Info:') }}" />
+                        {{$ticket->misc}}
+                    </div>
+                </div>
             </div>
 
             @empty
@@ -33,4 +62,13 @@
         <!--footer / redirect-->
         {{ $tickets->links() }}
     </p>
+    <style>
+    .accordion{
+        display:flex;
+        flex-direction:column;
+    }
+    .accordion:hover{
+        cursor: pointer;
+    }
+</style>
 </div>
