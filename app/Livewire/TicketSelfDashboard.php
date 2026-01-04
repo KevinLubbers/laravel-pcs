@@ -25,7 +25,7 @@ class TicketSelfDashboard extends Component
     {
         return view('livewire.ticket-self-dashboard', [
         'tickets' => Ticket::where('specialist_id', auth()->id())
-        ->latest()
+        ->orderByDesc('id')
         ->paginate($this->ticketsPerPage),
         ]);
     }

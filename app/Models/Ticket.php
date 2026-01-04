@@ -47,4 +47,28 @@ class Ticket extends Model
     return $this->belongsTo(CarModel::class, 'model_id');
     }
 
+    public function getDisplayNumberAttribute(): string
+    {
+        return 'PCS-' . str_pad($this->id, 7, '0', STR_PAD_LEFT);
+    }
+
+    public function getInfoTypeLabelAttribute(): string
+    {
+        return match ($this->info_type) {
+            'fo' => 'FO Number',
+            'customer' => 'Customer 9 Number',
+            default => '',
+        };
+    }
+    public function getStatusLabelAttribute(): string
+    {
+        return match ($this->status) {
+            'completed' => 'Resolved Ticket',
+            'unresolved' => 'New Ticket - Unsolved',
+            'in_progress' => 'In Progress',
+            'escalated' => 'Escalated Ticket',
+            default => '',
+        };
+    }
+
 }

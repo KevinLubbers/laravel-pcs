@@ -24,7 +24,7 @@ class TicketDashboard extends Component
     public function render()
     {
         return view('livewire.ticket-dashboard', [
-            'tickets' => Ticket::latest()->paginate($this->ticketsPerPage),
+            'tickets' => Ticket::orderByDesc('id')->paginate($this->ticketsPerPage),
         ]);
     }
 }
