@@ -57,12 +57,18 @@
                         {{$ticket->details}}
                     </div>
                     <hr class="mb-2 mt-2">
-                    <div class="flex justify-evenly">
-                        <x-button class="mt-2 mb-2">
-                            {{ __('Reassign Ticket') }}
+                    <div class="flex justify-around">
+                        <x-button @click="$dispatch('reassign', { 'ticket_id':{{ $ticket->id }} })" class="mt-2 mb-2">
+                            {{ __('Reassign') }}
                         </x-button>
                         <x-button class="mt-2 mb-2">
-                            {{ __('View Attachment') }}
+                            {{ __('Attachment') }}
+                        </x-button>
+                        <x-button class="mt-2 mb-2">
+                            {{ __('Status') }}
+                        </x-button>
+                        <x-button class="mt-2 mb-2">
+                            {{ __('Resend') }}
                         </x-button>
                     </div>
                     <hr class="mb-2 mt-2">

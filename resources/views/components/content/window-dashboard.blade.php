@@ -5,7 +5,7 @@
     </h1>
 
     <p class="mt-6 text-gray-500 dark:text-gray-400 leading-relaxed">
-       This is where you manage your tickets and can see the team's tickets. Resolve a ticket once you have thoroughly answered the user's question
+       This is where you manage your tickets and your team's tickets 
     </p>
 </div>
 
@@ -16,4 +16,5 @@
     <div>
         <livewire:ticket-dashboard />    
     </div>
+        <livewire:ticket-modal />
 </div>

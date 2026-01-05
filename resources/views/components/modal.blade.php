@@ -12,7 +12,7 @@ $maxWidth = [
 ][$maxWidth ?? '2xl'];
 @endphp
 
-<div
+<div 
     x-on:close.stop="show = !show"
     x-on:keydown.escape.window="show = !show"
     x-show="show"
