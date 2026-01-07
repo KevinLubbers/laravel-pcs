@@ -59,20 +59,29 @@ new class extends Component {
         }
     }
 
-}; ?>
+    public function mount(){
+        $this->specialists = User::pluck('name', 'id')->all();
+    }
 
-<div x-cloak x-transition x-data="{ show: @entangle('showMe') }"
-    @reassign.window="show = !show" @attachment.window="show = !show"
-    @status.window="show = !show" @resend.window="show = !show" x-show="show">
+}; ?>
+<div x-cloak x-transition x-data="{ show: @entangle('showMe'), id:'', attachments:[], title: '', status: '' }" autofocus="false"
+    @reassign.window="show = !show, id = $event.detail.id, title = $event.detail.title" @attachment.window="show = !show, id = $event.detail.id, attachments = $event.detail.attachments, title = $event.detail.title"
+    @status.window="show = !show, id = $event.detail.id ,status = $event.detail.status, title = $event.detail.title" @resend.window="show = !show, id = $event.detail.id, title = $event.detail.title" x-show="show">
     <x-dialog-modal>
         <x-slot name="title">
-            <div >{{ __('Edit') }}</div>
+            <div x-text="title">{{ __('Title') }}</div>
         </x-slot>
 
         <x-slot name="content">
             <div class="mt-4">
-                <x-label for="name" value="{{ __('Name') }}" />
-                <x-label for="id" value="{{ __('Assign Specialist') }}" />
+                <x-label for="name" value="{{ __('Reassign To') }}" />
+                <select class="mt-1 block mb-2 rounded-md text-gray-600 border-gray-300   dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 shadow-sm" >
+                @forelse($specialists as $id => $name)
+                    <option x-bind:selected="id === {{$id}}" id="{{$id}}" value="{{$id}}" >{{$name}}</option>
+                @empty
+                    <option disabled selected value="0">No Specialist</option>
+                @endforelse
+                </select>
             </div>
         </x-slot>
 
@@ -86,5 +95,4 @@ new class extends Component {
             </x-button>
         </x-slot>
     </x-dialog-modal>
-
 </div>
