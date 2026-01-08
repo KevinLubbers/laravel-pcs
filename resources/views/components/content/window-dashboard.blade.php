@@ -7,7 +7,9 @@
     <p class="mt-6 text-gray-500 dark:text-gray-400 leading-relaxed">
        This is where you manage your tickets and your team's tickets 
     </p>
-    <livewire:ticket-modal />
+    <div>
+        <livewire:ticket-modal />
+    </div>
 </div>
 
 <div class="bg-gray-200 dark:bg-gray-800 bg-opacity-25 grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 p-6 lg:p-8">

@@ -66,7 +66,7 @@ class Ticket extends Model
             'completed' => 'Resolved Ticket',
             'unresolved' => 'New Ticket - Unsolved',
             'in_progress' => 'In Progress',
-            'escalated' => 'Escalated Ticket',
+            'escalated' => 'On Hold',
             default => '',
         };
     }
