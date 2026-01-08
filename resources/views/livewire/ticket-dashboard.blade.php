@@ -57,7 +57,7 @@
                     </div>
                     <hr class="mb-2 mt-2">
                     <div class="flex justify-evenly">
-                        <x-button class="mt-2 mb-2">
+                        <x-button @click="$dispatch('reassign', { 'id':{{ $ticket->specialist_id }}, 'name':'{{ $ticket->users->name }}', 'mode':'reassign', 'title':'Reassign Ticket' })" class="mt-2 mb-2">
                             {{ __('Reassign Ticket') }}
                         </x-button>
                         <x-button class="mt-2 mb-2">

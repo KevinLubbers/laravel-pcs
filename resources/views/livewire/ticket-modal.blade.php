@@ -64,17 +64,23 @@ new class extends Component {
     }
 
 }; ?>
-<div x-cloak x-transition x-data="{ show: @entangle('showMe'), id:'', attachments:[], title: '', status: '' }" autofocus="false"
-    @reassign.window="show = !show, id = $event.detail.id, title = $event.detail.title" @attachment.window="show = !show, id = $event.detail.id, attachments = $event.detail.attachments, title = $event.detail.title"
-    @status.window="show = !show, id = $event.detail.id ,status = $event.detail.status, title = $event.detail.title" @resend.window="show = !show, id = $event.detail.id, title = $event.detail.title" x-show="show">
+<div x-cloak x-transition x-data="{ show: @entangle('showMe'), id:'', attachments:[], title: '', name: '', mode: '', status: '' }" autofocus="false"
+    @reassign.window="show = !show, id = $event.detail.id, mode = $event.detail.mode, name = $event.detail.name, title = $event.detail.title"
+    @attachment.window="show = !show, id = $event.detail.id, mode = $event.detail.mode, title = $event.detail.title"
+    @status.window="show = !show, id = $event.detail.id, mode = $event.detail.mode, status = $event.detail.status, title = $event.detail.title"
+    @resend.window="show = !show, id = $event.detail.id, mode = $event.detail.mode, title = $event.detail.title" x-show="show">
     <x-dialog-modal>
         <x-slot name="title">
             <div x-text="title">{{ __('Title') }}</div>
         </x-slot>
 
         <x-slot name="content">
+
+            <template x-if="mode === 'reassign'">
             <div class="mt-4">
-                <x-label for="name" value="{{ __('Reassign To') }}" />
+                <x-label for="name" value="{{ __('Assigned To:') }}" />
+                <x-label for="name" value=" " x-text="name" />
+                <x-label class="mt-2" for="name" value="{{ __('Reassign To') }}" />
                 <select class="mt-1 block mb-2 rounded-md text-gray-600 border-gray-300   dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 shadow-sm" >
                 @forelse($specialists as $id => $name)
                     <option x-bind:selected="id === {{$id}}" id="{{$id}}" value="{{$id}}" >{{$name}}</option>
@@ -83,6 +89,28 @@ new class extends Component {
                 @endforelse
                 </select>
             </div>
+            </template>
+
+            <template x-if="mode === 'status'">
+            <div class="mt-4">
+                <x-label for="status" value="{{ __('Current Status:') }}" />
+                <x-label for="status" value=" " x-text="status" />
+                <x-label class="mt-2" for="status" value="{{ __('Change Status') }}" />
+                <select class="mt-1 block mb-2 rounded-md text-gray-600 border-gray-300   dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 shadow-sm" >
+                    <option value="0" selected disabled>Select Status</option>
+                    <option value="1">Unresolved</option>
+                    <option value="2">In Progress</option>
+                    <option value="3">On Hold</option>
+                    <option value="4">Solved</option>
+                </select>
+                </div>
+            </template>
+
+            <template x-if="mode === 'resend'">
+            </template>
+
+            <template x-if="mode === 'attachment'">
+            </template>
         </x-slot>
 
         <x-slot name="footer">
