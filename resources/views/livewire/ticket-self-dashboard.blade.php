@@ -58,7 +58,7 @@
                     </div>
                     <hr class="mb-2 mt-2">
                     <div class="flex justify-around">
-                        <x-button @click="$dispatch('reassign', { 'id':{{ $ticket->specialist_id }}, 'name':'{{ $ticket->users->name }}', 'mode':'reassign', 'title':'Reassign Ticket' })" class="mt-2 mb-2">
+                        <x-button @click="$dispatch('reassign', { 'id':{{ $ticket->id }}, name:'{{ $ticket->users->name }}', 'specialist':'{{ $ticket->specialist_id}}', 'mode':'reassign', 'title':'Reassign Ticket' })" class="mt-2 mb-2">
                             {{ __('Reassign') }}
                         </x-button>
                         <x-button @click="$dispatch('attachment', { 'id':{{ $ticket->id }}, 'mode':'attachment', 'title':'View Attachment(s)' })" class="mt-2 mb-2">

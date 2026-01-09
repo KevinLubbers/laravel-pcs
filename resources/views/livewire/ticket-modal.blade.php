@@ -6,6 +6,8 @@ use App\Models\Division;
 use App\Models\CarModel;
 use Livewire\Volt\Component;
 
+use App\Models\Ticket;
+
 new class extends Component {
     
     public $showMe;
@@ -14,27 +16,38 @@ new class extends Component {
     public $name;
     public $specialist;
     public $type;
+    public $ticket;
+    public $status;
 
 
     
-
+    public function resendTicket($id){
+        //add email functionality eventually
+        $send = "";
+    }
     public function reassignSpecialist($id, $specialist){
-
-       
-       request()->session()->flash('success', $model->name . ' Updated Successfully!');
-       $this->dispatch('model-edited');
+        $ticket = Ticket::findOrFail($id);
+        $ticket->specialist_id = $specialist;
+        $ticket->save();
+        request()->session()->flash('success', 'Ticket Specialist Successfully Updated!');
+        $this->dispatch('ticket-reassigned');
+        $this->resendTicket($id);
     }
     public function changeStatus($id, $status){
+        $ticket = Ticket::findOrFail($id);
+        $ticket->status = $status;
+        $this->$status= $status;
+        $ticket->save();
+        request()->session()->flash('success', 'Ticket Status Successfully Updated!');
+        $this->dispatch('status-changed');
         
     }
-    public function resendTicket($id){
-        
-    }
+    
 
 
     public function routeSave($id, $specialist, $title, $status = null){
         switch ($title) {
-            case 'Reassign Specialist':
+            case 'Reassign Ticket':
                 $this->reassignSpecialist($id, $specialist);
                 break;
             case 'Change Status':
@@ -46,6 +59,7 @@ new class extends Component {
         }
     }
 
+
     public function mount(){
         $this->specialists = User::pluck('name', 'id')->all();
         $this->showMe = false;
@@ -53,8 +67,8 @@ new class extends Component {
 
 }; ?>
 <div>
-<div x-data="{ show: @entangle('showMe'), id:'', attachments:[], title: '', name: '', mode: '', status: '' }" x-show="show"
-    @reassign.window="show = !show, id = $event.detail.id, mode = $event.detail.mode, name = $event.detail.name, title = $event.detail.title"
+<div x-data="{ show: @entangle('showMe'), id:'', attachments:[], title: '', name: '', mode: '', status: @entangle('status'), specialist: @entangle('specialist') }" x-show="show"
+    @reassign.window="show = !show, id = $event.detail.id, mode = $event.detail.mode, name = $event.detail.name, specialist = $event.detail.specialist, title = $event.detail.title"
     @attachment.window="show = !show, id = $event.detail.id, mode = $event.detail.mode, title = $event.detail.title"
     @status.window="show = !show, id = $event.detail.id, mode = $event.detail.mode, status = $event.detail.status, title = $event.detail.title"
     @resend.window="show = !show, id = $event.detail.id, mode = $event.detail.mode, title = $event.detail.title" >
@@ -112,7 +126,7 @@ new class extends Component {
                     </template>
                 </div>
                 <x-label class="mt-2" for="status" value="{{ __('Change Status') }}" />
-                <select class="mt-1 block mb-2 rounded-md text-gray-600 border-gray-300   dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 shadow-sm" >
+                <select wire:model="status" class="mt-1 block mb-2 rounded-md text-gray-600 border-gray-300   dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 shadow-sm" >
                     <option value="0" selected disabled>Select Status</option>
                     <option value="unresolved">Unresolved</option>
                     <option value="in_progress">In Progress</option>

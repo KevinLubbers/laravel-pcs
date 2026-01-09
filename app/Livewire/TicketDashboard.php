@@ -5,6 +5,7 @@ namespace App\Livewire;
 use App\Models\Ticket;
 use Livewire\WithPagination;
 use Livewire\Component;
+use Livewire\Attributes\On;
 
 class TicketDashboard extends Component
 {
@@ -21,6 +22,8 @@ class TicketDashboard extends Component
     {
         $this->ticketsPerPage = session('tickets_per_page', 5);
     }
+    #[On(event: 'status-changed')]
+    #[On(event: 'ticket-reassigned')]
     public function render()
     {
         return view('livewire.ticket-dashboard', [
