@@ -17,6 +17,19 @@ class TicketDashboard extends Component
         session(['tickets_per_page' => $value]);
         $this->resetPage();
     }
+    public function openAttachments($id)
+{
+    $ticket = Ticket::findOrFail($id);
+
+    $this->dispatch(
+        'attachment',
+        id: $ticket->id,
+        attachments: $ticket->attachments,
+        mode: 'attachment',
+        title: 'View Attachment(s)'
+    );
+}
+
 
     public function mount()
     {

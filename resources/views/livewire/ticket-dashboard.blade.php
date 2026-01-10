@@ -9,6 +9,10 @@
         <div wire:poll.120s>
             @forelse ($tickets as $ticket)
             <div x-data="{ open:false }" class="border rounded-lg shadow p-2 mb-2">
+                <div x-data="{saved:false}" x-show="saved" x-transition x-cloak
+                @item-updated.window="if ($event.detail.id === {{ $ticket->id }}) {saved = true; setTimeout(() => saved = false, 5000);}" >
+                    <x-label class="text-green-500 dark:text-green-400" for="hidden" value="{{__('Updated ✓') }}" />
+                </div>
                 <div class="flex flex-row items-center">
                     <x-label class="mr-2" for="status" value="{{ __('Status:') }}" />
                     <span class="inline-block w-3 h-3 rounded-full mr-2
@@ -60,7 +64,7 @@
                         <x-button @click="$dispatch('reassign', { 'id':{{ $ticket->id }}, 'name':'{{ $ticket->users->name }}', specialist:'{{ $ticket->specialist_id}}', 'mode':'reassign', 'title':'Reassign Ticket' })" class="mt-2 mb-2">
                             {{ __('Reassign Ticket') }}
                         </x-button>
-                        <x-button class="mt-2 mb-2">
+                        <x-button wire:click="openAttachments({{ $ticket->id }})" class="mt-2 mb-2">
                             {{ __('View Attachment') }}
                         </x-button>
                     </div>

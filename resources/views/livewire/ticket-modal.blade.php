@@ -31,6 +31,7 @@ new class extends Component {
         $ticket->save();
         request()->session()->flash('success', 'Ticket Specialist Successfully Updated!');
         $this->dispatch('ticket-reassigned');
+        $this->dispatch('item-updated', id: $id);
         $this->resendTicket($id);
     }
     public function changeStatus($id, $status){
@@ -40,6 +41,7 @@ new class extends Component {
         $ticket->save();
         request()->session()->flash('success', 'Ticket Status Successfully Updated!');
         $this->dispatch('status-changed');
+        $this->dispatch('item-updated', id: $id);
         
     }
     
@@ -69,7 +71,7 @@ new class extends Component {
 <div>
 <div x-data="{ show: @entangle('showMe'), id:'', attachments:[], title: '', name: '', mode: '', status: @entangle('status'), specialist: @entangle('specialist') }" x-show="show"
     @reassign.window="show = !show, id = $event.detail.id, mode = $event.detail.mode, name = $event.detail.name, specialist = $event.detail.specialist, title = $event.detail.title"
-    @attachment.window="show = !show, id = $event.detail.id, mode = $event.detail.mode, title = $event.detail.title"
+    @attachment.window="show = !show, id = $event.detail.id, attachments = $event.detail.attachments, mode = $event.detail.mode, title = $event.detail.title"
     @status.window="show = !show, id = $event.detail.id, mode = $event.detail.mode, status = $event.detail.status, title = $event.detail.title"
     @resend.window="show = !show, id = $event.detail.id, mode = $event.detail.mode, title = $event.detail.title" >
     <x-dialog-modal>
@@ -140,6 +142,23 @@ new class extends Component {
             </template>
 
             <template x-if="mode === 'attachment'">
+                <template x-if="attachments.length">
+                    <ul class="list-disc pl-5 space-y-1">
+                        <template x-for="(path, index) in attachments" :key="index">
+                            <li>
+                                <a
+                                    :href="`/storage/${path}`"
+                                    target="_blank"
+                                    class="text-indigo-600 underline"
+                                    x-text="path.split('/').pop()"
+                                ></a>
+                            </li>
+                        </template>
+                    </ul>
+                </template>
+                <template x-if="!attachments.length">
+                    <p class="text-black dark:text-white">No attachments</p>
+                </template>
             </template>
         </x-slot>
 
