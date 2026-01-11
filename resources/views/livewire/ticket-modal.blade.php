@@ -142,7 +142,8 @@ new class extends Component {
             </template>
 
             <template x-if="mode === 'attachment'">
-                <template x-if="attachments.length">
+                <div>
+                <template x-if="attachments.length >= 1">
                     <ul class="list-disc pl-5 space-y-1">
                         <template x-for="(path, index) in attachments" :key="index">
                             <li>
@@ -157,9 +158,13 @@ new class extends Component {
                     </ul>
                 </template>
                 <template x-if="!attachments.length">
-                    <p class="text-black dark:text-white">No attachments</p>
+                    <div>
+                        <p class="text-black dark:text-white">No attachments</p>
+                    </div>
                 </template>
+                <div>
             </template>
+
         </x-slot>
 
         <x-slot name="footer">

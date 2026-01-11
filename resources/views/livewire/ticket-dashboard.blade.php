@@ -56,6 +56,15 @@
                         {{$ticket->info_number ?? ""}}
                     </div>
                     <div class="flex flex-row items-center  dark:text-gray-200">
+                        <x-label class="mr-2 " for="details" value="{{ __('Attachments:') }}" />
+                        {{ count($ticket->attachments) }}
+                        @if (count($ticket->attachments) != 1)
+                            Attachments
+                        @else
+                            Attachment
+                        @endif
+                    </div>
+                    <div class="flex flex-row items-center  dark:text-gray-200">
                         <x-label class="mr-2 " for="details" value="{{ __('Details:') }}" />
                         {{$ticket->details}}
                     </div>
