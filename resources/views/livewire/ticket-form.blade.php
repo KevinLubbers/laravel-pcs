@@ -6,6 +6,7 @@ use App\Models\Division;
 use App\Models\CarModel;
 use App\Models\Ticket;
 use Livewire\WithFileUploads;
+use App\Mail\SendPCS;
 
 new class extends Component {
     use WithFileUploads;
@@ -92,6 +93,7 @@ new class extends Component {
     $this->reset();
     $this->dispatch('ticket-created', ticket: $new);
     session()->flash('success','Ticket Created Successfully!');
+    Mail::to($new->email)->cc($new->users->email)->send(new SendPCS($new));
     return redirect()->to('/');
 	}
     public function mount(){
