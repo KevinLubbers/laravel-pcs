@@ -65,8 +65,8 @@ new class extends Component {
         'division' => 'required|exists:divisions,id',
         'model' => 'required|exists:car_models,id',
         'misc' => 'required|string|min:1|max:100',
-        'info_type' => 'nullable|in:fo,customer',
-        'info_number' => 'nullable|string|min:6|max:10|required_with:info_type',
+        'info_type' => 'required|string|in:fo,customer,name',
+        'info_number' => 'required|string|min:6|max:35|required_with:info_type',
         'details' => 'required|string|max:5000',
         'attachments' => 'nullable|array|max:5',
         'attachments.*' => 'file|mimes:pdf,png,jpg,jpeg,webp|max:20480',
@@ -199,13 +199,24 @@ new class extends Component {
             </div>
             <div><x-label for="fo" value="{{ __('FO Number') }}" /></div>
         </div>
+        <div style="align-items:baseline;" class="flex flex-row">
+            <div class="mr-2">
+                <x-checkbox x-bind:checked="selected_box === 'name'"
+                x-on:click="selected_box = selected_box === 'name' ? null : 'name';
+                $wire.set('info_number', '');
+                if (selected_box) {
+                    $nextTick(() => $refs.infoNumber.focus());
+                }" id="name" name="name" value="name" />
+            </div>
+            <div><x-label for="name" value="{{ __('Customer Name') }}" /></div>
+        </div>
     @error('info_type')
         <p class="text-red-400 text-xs mt-2 mb-2">{{$message}}</p>
     @enderror
-    <x-input wire:model="info_number" x-on:input=" $el.value = $el.value.replace(/[^0-9]/g, '') "
+    <x-input wire:model="info_number" x-on:input=" if (selected_box !== 'name') {$el.value = $el.value.replace(/[^0-9]/g, '')} else {$el.value = $el.value.replace(/[^a-zA-Z ]/g, '')} "
     x-ref="infoNumber"
-    x-bind:placeholder="selected_box === 'customer' ? 'Customer 9 Number' : (selected_box === 'fo' ? '6 Digit FO Number' : '' )"
-    x-bind:maxlength="selected_box === 'customer' ? 10 : (selected_box === 'fo' ? 6 : null )"
+    x-bind:placeholder="selected_box === 'customer' ? 'Customer 9 Number' : (selected_box === 'fo' ? '6 Digit FO Number' : selected_box === 'name' ? 'Customer Name' : '' )"
+    x-bind:maxlength="selected_box === 'customer' ? 10 : (selected_box === 'fo' ? 6 : selected_box === 'name' ? 35 : '' )"
     style="" type="text" name="information" id="information" autocomplete="off" />
     </div>
     @error('info_number')

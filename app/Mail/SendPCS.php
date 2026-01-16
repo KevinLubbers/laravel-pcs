@@ -9,6 +9,7 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 use App\Models\Ticket;
+use Illuminate\Mail\Mailables\Attachment;
 
 class SendPCS extends Mailable
 {
@@ -30,7 +31,7 @@ class SendPCS extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'New Ticket - {{$this->ticket->display_number}} | {{$this->ticket->info_type_label}} : {{$this->ticket->info_number}}',
+            subject: "New Ticket - {$this->ticket->display_number} - {$this->ticket->info_type_label} : {$this->ticket->info_number}",
         );
     }
 
@@ -52,10 +53,10 @@ class SendPCS extends Mailable
      */
     public function attachments(): array
     {
-        $attachments = [];
-        foreach ($this->ticket->attachments as $file) {
+         $attachments = [];
+        /*foreach ($this->ticket->attachments as $file) {
             $attachments[] = Attachment::fromStorageDisk('public', $file);
-        }
+        }*/
         return $attachments;
     }
 }
