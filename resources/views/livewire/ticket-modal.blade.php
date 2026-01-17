@@ -5,7 +5,7 @@ use Livewire\Attributes\On;
 use App\Models\Division;
 use App\Models\CarModel;
 use Livewire\Volt\Component;
-
+use App\Mail\SendPCS;
 use App\Models\Ticket;
 
 new class extends Component {
@@ -22,8 +22,9 @@ new class extends Component {
 
     
     public function resendTicket($id){
-        //add email functionality eventually
-        $send = "";
+        $ticket = Ticket::findOrFail($id);
+        Mail::to($ticket->email)->cc($ticket->users->email)->send(new SendPCS($ticket));
+        request()->session()->flash('success', 'Ticket Resent Successfully!');
     }
     public function reassignSpecialist($id, $specialist){
         $ticket = Ticket::findOrFail($id);
@@ -56,7 +57,7 @@ new class extends Component {
                 $this->changeStatus($id, $status);
                 break;
             case 'Resend Ticket':
-                $this->resendTicket($id, $specialist);
+                $this->resendTicket($id);
                 break;
         }
     }
