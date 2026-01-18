@@ -25,6 +25,7 @@ new class extends Component {
         $ticket = Ticket::findOrFail($id);
         Mail::to($ticket->email)->cc($ticket->users->email)->send(new SendPCS($ticket));
         request()->session()->flash('success', 'Ticket Resent Successfully!');
+        $this->dispatch('item-updated', id: $id);
     }
     public function reassignSpecialist($id, $specialist){
         $ticket = Ticket::findOrFail($id);
@@ -140,6 +141,9 @@ new class extends Component {
             </template>
 
             <template x-if="mode === 'resend'">
+                <div>
+                    <p class="text-black dark:text-white">Are you sure you want to resend this ticket?</p>
+                </div>
             </template>
 
             <template x-if="mode === 'attachment'">

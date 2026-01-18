@@ -81,7 +81,7 @@
                         <x-button @click="$dispatch('status', { 'id':{{ $ticket->id }}, 'status':'{{ $ticket->status }}', 'mode':'status', 'title':'Change Status' })" class="mt-2 mb-2">
                             {{ __('Status') }}
                         </x-button>
-                        <x-button @click="$dispatch('resend', { 'id':{{ $ticket->id }}, 'mode':'resend', 'title':'Resend Email' })" class="mt-2 mb-2">
+                        <x-button @click="$dispatch('resend', { 'id':{{ $ticket->id }}, 'mode':'resend', 'title':'Resend Ticket' })" class="mt-2 mb-2">
                             {{ __('Resend') }}
                         </x-button>
                     </div>
