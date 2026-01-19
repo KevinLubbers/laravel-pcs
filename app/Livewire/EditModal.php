@@ -76,7 +76,7 @@ class EditModal extends Component
                 {{session('success')}}
             </div>
         @endif
-        <div x-data="{ show: @entangle('isOpen'), id: '', name: '', specialist: '', title: '' }" x-show="show"
+        <div x-data="{ show: @entangle('isOpen'), id: '', name: '', specialist: @entangle('specialist'), title: '' }" x-show="show"
         @edit-division.window="show = !show, id = $event.detail.id, name = $event.detail.name, specialist = $event.detail.specialist, title = $event.detail.title"
         @edit-model.window="show = !show, id = $event.detail.id, name = $event.detail.name, specialist = $event.detail.specialist, title = $event.detail.title"  > 
             <x-dialog-modal>
@@ -89,12 +89,11 @@ class EditModal extends Component
                         <x-label for="name" value="{{ __('Name') }}" />
                         <x-input x-data={} @edit-division.window="$nextTick(() => $refs.namecheck.focus())"
                         @edit-model.window="$nextTick(() => $refs.namecheck.focus())" x-model="name" x-ref="namecheck" type="text" name="name" id="name" autocomplete="off" />
-                        <x-label for="id" value="{{ __('Assign Specialist') }}" />
-                        <select  x-model="specialist" class="mt-1 block mb-2 rounded-md text-gray-600 border-gray-300   dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 shadow-sm">
-                            <option disabled selected value="0">Select Specialist</option>
-                            <option selected value="0">No Specialist</option>
+                        <x-label for="specialist" value="{{ __('Assign Specialist') }}" />
+                        <select wire:model="specialist"  class="mt-1 block mb-2 rounded-md text-gray-600 border-gray-300   dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 shadow-sm">
+                            <option disabled value="0">Select Specialist</option>
                             @foreach($specialists as $id => $name)
-                                <option id="specialist_id" name="specialist_id" id="{{$id}}" value="{{$id}}" >{{$name}}</option>
+                                <option x-bind:selected="specialist == {{$id}}" id="{{$id}}" value="{{$id}}" >{{$name}}</option>
                             @endforeach
                         </select>
                     </div>
