@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 <body>
-    <h1>PCS Ticket System</h1>
+    <div class="mb-2">
+    <h1 style="text-align: center;">PCS Ticket System</h1>
 
     <p>
         Ticket <strong>{{ $ticket->display_number }}</strong> has been created by submitting a PCS Ticket online
@@ -22,6 +23,7 @@
     @foreach ($ticket->attachments as $file)
         <a href="{{ asset('storage/' . $file) }}">Download attachment</a>
     @endforeach
+    </div>
 
     <p>We will get back to you shortly. Please do not submit multiple tickets for the same issue.</p>
 </body>
