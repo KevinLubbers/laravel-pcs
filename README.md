@@ -73,6 +73,7 @@ A test account is included in the seeder. Log in and test the functionality. Tel
 - [x] Write FAQ Section
 - [ ] Write Instructions Section
 - [ ] Remove Draftable from Nav Bar
+- [ ] Flesh out Model Seeder
 - [ ] Backlog: Edit Model modal - auto select populate specialist
 
  

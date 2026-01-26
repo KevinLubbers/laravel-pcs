@@ -20,6 +20,9 @@ Route::get('/', function () {
 Route::get('/faq', function () {
     return view('pages.faq');
 })->name('faq');
+Route::get('/instructions', function () {
+    return view('pages.instructions');
+})->name('instructions');
 
 Route::middleware([
     'auth:sanctum',
