@@ -68,8 +68,7 @@ A test account is included in the seeder. Log in and test the functionality. Tel
  - username: test@gmail.com
  - password: password
  
-### WIP - Currently Working on
-
+## WIP - Currently Working on
 - [x] Write FAQ Section
 - [ ] Write Instructions Section
 - [ ] Remove Draftable from Nav Bar

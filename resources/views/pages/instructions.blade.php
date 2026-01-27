@@ -18,20 +18,18 @@
                 @endauth
                 </div>
         @endif
-    </div>
 
-        <div>
-            <h1>Frequently Asked Questions<h1>
+        
+    </div>
+    <div>
+            <h1>Instructions<h1>
                 <hr>
                 <ol type="I" >
-                    <li>How will I know if my ticket was submitted sucessfully?</li>
-                    <ul><li>An email will be sent to the email you provided and a green notification box should appear</li></ul>
-                    <li>What is the State Side Bonus for this vehicle?</li>
-                    <ul><li>Attached is the Excel Spreadsheet that lists bonus amounts</li></ul>
-                    <li>What is the deposit for this vehicle?</li>
-                    <ul><li>Attached is the screenshot for deposit amounts</li></ul>
-                    <li>Can I submit multiple tickets for the same issue?</li>
-                    <ul><li>No, please do not submit multiple tickets for the same issue</li></ul>
+                    <li>Fill out the form - every field is Mandatory</li>
+                    <li>Click the submit button</li>
+                    <li>You will receive an email if your ticket was successful</li>
+                    <li>An error will appear if there was an issue</li>
+                    <li>Please do NOT submit multiple tickets for the same issue</li>
                 </ol>
 
         </div>

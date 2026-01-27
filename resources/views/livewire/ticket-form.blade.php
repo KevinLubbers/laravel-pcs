@@ -111,7 +111,7 @@ new class extends Component {
     @if(session('success'))
         <div class="mb-4 bg-green-100 border border-green-300 text-green-800 px-4 py-3 rounded relative dark:text-green-300 dark:border-green-600 dark:bg-green-900">{{session('success')}}</div>
     @endif
-    <x-label class="mt-4" for="email" value="{{ __('Email') }}" />
+    <x-label class="mt-8" for="email" value="{{ __('Email') }}" />
     <x-input wire:model="email" class="rounded-md dark:bg-gray-800" id="email" type="email" name="email" required autofocus autocomplete="off" />
     @error('email')
         <p class="text-red-400 text-xs mt-2 mb-2">{{$message}}</p>
