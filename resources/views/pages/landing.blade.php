@@ -9,13 +9,21 @@
                     </div>
                 </div>
                 <div>
-                <a href="{{ route('faq') }}" class="ml-4 font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm selection:border-indigo-400">FAQ</a>
-                <a href="{{ route('instructions') }}"  class="ml-4 font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm selection:border-indigo-400">Instructions</a>
-                @auth
-                    <a href="{{ route('dashboard') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm selection:border-indigo-400 ml-2">Dashboard</a>
-                @else
-                    <a href="{{ route('login') }}" class="ml-4 font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm selection:border-indigo-400">Log in</a>
-                @endauth
+                    <x-nav-link href="{{ route('faq') }}" :active="request()->routeIs('faq')">
+                        {{ __('FAQ') }}
+                    </x-nav-link>
+                    <x-nav-link href="{{ route('instructions') }}" :active="request()->routeIs('instructions')">
+                        {{ __('Instructions') }}
+                    </x-nav-link>
+                    @auth
+                    <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
+                        {{ __('Dashboard') }}
+                    </x-nav-link>
+                    @else
+                    <x-nav-link href="{{ route('login') }}">
+                        {{ __('Log in') }}
+                    </x-nav-link>
+                    @endauth
                 </div>
             </div>
         @endif

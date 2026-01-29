@@ -111,15 +111,15 @@ new class extends Component {
     @if(session('success'))
         <div class="mb-4 bg-green-100 border border-green-300 text-green-800 px-4 py-3 rounded relative dark:text-green-300 dark:border-green-600 dark:bg-green-900">{{session('success')}}</div>
     @endif
-    <x-label class="mt-8" for="email" value="{{ __('Email') }}" />
-    <x-input wire:model="email" class="rounded-md dark:bg-gray-800" id="email" type="email" name="email" required autofocus autocomplete="off" />
+    <x-label class="mt-12" for="email" value="{{ __('Email') }}" />
+    <x-input wire:model="email"  class="rounded-md dark:bg-gray-800" id="email" type="email" name="email" required autofocus autocomplete="off" />
     @error('email')
         <p class="text-red-400 text-xs mt-2 mb-2">{{$message}}</p>
     @enderror
 
     <x-label class="mt-4" for="task" value="{{ __('Task') }}" />
     <select wire:model="task" style="" class="mt-1 block mb-2 rounded-md text-gray-600 border-gray-300   dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 shadow-sm">
-        <option value="0" selected disabled>Select Task</option>
+        <option value="0" selected>Select Task</option>
         @forelse($tasks ?? [] as $task)
             <option value="{{$task->id}}">{{$task->name}}</option>
         @empty
@@ -132,7 +132,7 @@ new class extends Component {
 
     <x-label class="mt-4" for="year" value="{{ __('Year') }}" />
     <select style="" wire:model.defer="year" class="mt-1 block mb-2 rounded-md text-gray-600 border-gray-300   dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 shadow-sm">
-        <option value="0" selected disabled>Select Year</option>
+        <option value="0" selected>Select Year</option>
         @foreach(range(now()->year - 1, now()->year + 2) as $y)
             <option value="{{ $y }}">{{ $y }}</option>
         @endforeach
@@ -143,7 +143,7 @@ new class extends Component {
 
     <x-label class="mt-4" for="division" value="{{ __('Division') }}" />
     <select wire:model="division" wire:change="changedDivision($event.target.value)" style="" class="mt-1 block mb-2 rounded-md text-gray-600 border-gray-300   dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 shadow-sm">
-        <option value="0" selected disabled>Select Division</option>
+        <option value="0" selected>Select Division</option>
         @forelse($divisions ?? [] as $division)
             <option value="{{$division->id}}">{{$division->name}}</option>
         @empty
@@ -156,7 +156,7 @@ new class extends Component {
 
     <x-label class="mt-4" for="model" value="{{ __('Model') }}" />
     <select wire:model="model" style="" class="mt-1 block mb-2 rounded-md text-gray-600 border-gray-300   dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 shadow-sm">
-        <option value="0" selected disabled>Select Model after Division</option>
+        <option value="0" selected>Select Model after Division</option>
 	@forelse($models ?? [] as $model)
 		<option value="{{$model->id}}">{{$model->name}}</option>
 	@empty
@@ -168,7 +168,7 @@ new class extends Component {
     @enderror
 
     <x-label class="mt-4" for="misc" value="{{ __('Trim / Packages / Drivetrain') }}" />
-    <x-input wire:model="misc" style="" placeholder="Texas Trail 4x4" type="text" name="misc" id="misc" autocomplete="off" />
+    <x-input wire:model="misc" class="mt-1" placeholder="Texas Trail 4x4" type="text" name="misc" id="misc" autocomplete="off" />
     @error('misc')
         <p class="text-red-400 text-xs mt-2 mb-2">{{$message}}</p>
     @enderror
@@ -224,14 +224,14 @@ new class extends Component {
     @enderror
 
     <x-label class="mt-4" for="description" value="{{ __('Description of Issue') }}" />
-    <textarea wire:model="details" style="" class="mt-1 block mb-2 rounded-md text-gray-600 border-gray-300   dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 shadow-sm" name="description" id="description" autocomplete="off" ></textarea>
+    <textarea wire:model="details" placeholder="Help me!"style="" class="mt-1 block mb-2 rounded-md text-gray-600 border-gray-300   dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 shadow-sm" name="description" id="description" autocomplete="off" ></textarea>
     @error('details')
         <p class="text-red-400 text-xs mt-2 mb-2">{{$message}}</p>
     @enderror
 
     <input wire:model="attachments" accept="application/pdf,image/*" type="file" multiple="multiple" name="file" id="file" class="mt-1 block mb-2 rounded-md text-gray-600 border-gray-300   dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 shadow-sm">
 
-    <x-button class="mt-4" type="submit">
+    <x-button class="mt-4 mb-6" type="submit">
         {{ __('Send') }}
     </x-button>
 

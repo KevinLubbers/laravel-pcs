@@ -70,11 +70,12 @@ A test account is included in the seeder. Log in and test the functionality. Tel
  
 ## WIP - Currently Working on
 - [x] ~~Write FAQ Section~~
-- [ ] Write Instructions Section
+- [x] ~~Write Instructions Section~~
 - [x] ~~Remove Draftable from Nav Bar~~
 - [ ] Flesh out Model Seeder
 - [ ] Backlog: Edit Model modal - auto select populate specialist
-- [ ] Backlog: Add FAQ or Instructions highlighted in nav when on that page
+- [x] ~~Backlog: Add FAQ or Instructions highlighted in nav when on that page~~
+- [ ] Add Analytics Page 
 
 
  
