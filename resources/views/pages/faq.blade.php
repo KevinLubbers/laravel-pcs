@@ -20,18 +20,18 @@
         @endif
     </div>
 
-        <div>
-            <h1>Frequently Asked Questions<h1>
+        <div class="p-6 lg:p-8 bg-white dark:bg-gray-800 dark:bg-gradient-to-bl dark:from-gray-700/50 dark:via-transparent border-b border-gray-200 dark:border-gray-700">
+            <h1>Frequently Asked Questions</h1>
                 <hr>
-                <ol type="I" >
-                    <li>How will I know if my ticket was submitted sucessfully?</li>
-                    <ul><li>An email will be sent to the email you provided and a green notification box should appear</li></ul>
+                <ol class="list-[upper-roman] list-inside">
+                    <li class="mt-6">How will I know if my ticket was submitted sucessfully?</li>
+                    <ul class="mb-4 list-disc list-inside"><li>An email will be sent to the email you provided and a green flash notification should appear</li></ul></li>
                     <li>What is the State Side Bonus for this vehicle?</li>
-                    <ul><li>Attached is the Excel Spreadsheet that lists bonus amounts</li></ul>
+                    <ul class="mb-4 list-disc list-inside"><li>Attached is the Excel Spreadsheet that lists bonus amounts - <a href="#">Click Here</a> -</li></ul>
                     <li>What is the deposit for this vehicle?</li>
-                    <ul><li>Attached is the screenshot for deposit amounts</li></ul>
+                    <ul class="mb-4 list-disc list-inside"><li>Attached is the screenshot for deposit amounts - <a href="#">Click Here</a> -</li></ul>
                     <li>Can I submit multiple tickets for the same issue?</li>
-                    <ul><li>No, please do not submit multiple tickets for the same issue</li></ul>
+                    <ul class="list-disc list-inside"><li>No, please do not submit multiple tickets for the same issue</li></ul>
                 </ol>
 
         </div>

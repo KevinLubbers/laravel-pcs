@@ -21,14 +21,15 @@
 
         
     </div>
-    <div>
-            <h1>Instructions<h1>
+    <div class="p-6 lg:p-8 bg-white dark:bg-gray-800 dark:bg-gradient-to-bl dark:from-gray-700/50 dark:via-transparent border-b border-gray-200 dark:border-gray-700">
+            <h1>Instructions</h1>
                 <hr>
-                <ol type="I" >
-                    <li>Fill out the form - every field is Mandatory</li>
-                    <li>Click the submit button</li>
-                    <li>You will receive an email if your ticket was successful</li>
-                    <li>An error will appear if there was an issue</li>
+                <ol class="list-decimal list-inside" >
+                    <li class="mt-6 mb-4">Fill out the form - every field is Mandatory</li>
+                    <li class="mb-4">You can attach multiple files by ctrl + clicking</li>
+                    <li class="mb-4">Click the submit button</li>
+                    <li class="mb-4">You will receive an email if your ticket was successful</li>
+                    <li class="mb-4">An error will appear if there was an issue</li>
                     <li>Please do NOT submit multiple tickets for the same issue</li>
                 </ol>
 
