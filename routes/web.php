@@ -45,4 +45,8 @@ Route::middleware([
     Route::get('/draftable', function () {
         return view('draftable');
     })->name('draftable');
+
+    Route::get('/analytics', function () {
+        return view('analytics');
+    })->name('analytics');
 });
