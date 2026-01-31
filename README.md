@@ -72,9 +72,9 @@ A test account is included in the seeder. Log in and test the functionality. Tel
 - [x] ~~Write FAQ Section~~
 - [x] ~~Write Instructions Section~~
 - [x] ~~Remove Draftable from Nav Bar~~
+- [x] ~~Backlog: Add FAQ or Instructions highlighted in nav when on that page~~
 - [ ] Flesh out Model Seeder
 - [ ] Backlog: Edit Model modal - auto select populate specialist
-- [x] ~~Backlog: Add FAQ or Instructions highlighted in nav when on that page~~
 - [ ] Add Analytics Page 
 
 

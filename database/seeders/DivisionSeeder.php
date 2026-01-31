@@ -88,5 +88,10 @@ class DivisionSeeder extends Seeder
             'name' => 'Toyota',
             'specialist_id' => 0,
         ]);
+        Division::create([
+            'id' => 16,
+            'name' => 'Volkswagen',
+            'specialist_id' => 6,
+        ]);
     }
 }

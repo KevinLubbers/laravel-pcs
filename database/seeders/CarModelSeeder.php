@@ -34,16 +34,106 @@ class CarModelSeeder extends Seeder
             ],
             [
                 'id' => 4,
-                'name' => 'CPO Bentely',
-                'division_id' => 4,
-                'specialist_id' => 5,
-            ],
-            [
-                'id' => 5,
                 'name' => 'Expedition',
                 'division_id' => 6,
                 'specialist_id' => 4,
             ],
+            [
+                'id' => 5,
+                'name' => 'A6 Quattro',
+                'division_id' => 1,
+                'specialist_id' => null,
+            ],
+            [
+                'id' => 6,
+                'name' => 'Q7 Quattro',
+                'division_id' => 1,
+                'specialist_id' => null,
+            ],
+            [
+                'id' => 7,
+                'name' => 'SQ7 Quattro',
+                'division_id' => 1,
+                'specialist_id' => null,
+            ],
+            [
+                'id' => 8,
+                'name' => 'A3 Quattro',
+                'division_id' => 1,
+                'specialist_id' => null,
+            ],
+            [
+                'id' => 9,
+                'name' => 'Q8 Quattro',
+                'division_id' => 1,
+                'specialist_id' => null,
+            ],
+            [
+                'id' => 10,
+                'name' => 'RS Q8 Quattro',
+                'division_id' => 1,
+                'specialist_id' => null,
+            ],
+            [
+                'id' => 11,
+                'name' => 'SQ8 Quattro',
+                'division_id' => 1,
+                'specialist_id' => null,
+            ],
+            [
+                'id' => 12,
+                'name' => 'RS 3 Quattro',
+                'division_id' => 1,
+                'specialist_id' => null,
+            ],
+            [
+                'id' => 13,
+                'name' => 'S3 Quattro',
+                'division_id' => 1,
+                'specialist_id' => null,
+            ],
+            [
+                'id' => 14,
+                'name' => 'Jetta',
+                'division_id' => 16,
+                'specialist_id' => null,
+            ],
+            [
+                'id' => 15,
+                'name' => 'Taos',
+                'division_id' => 16,
+                'specialist_id' => null,
+            ],
+            [
+                'id' => 16,
+                'name' => 'Golf',
+                'division_id' => 16,
+                'specialist_id' => null,
+            ],
+            [
+                'id' => 17,
+                'name' => 'Tiguan',
+                'division_id' => 16,
+                'specialist_id' => null,
+            ],
+            [
+                'id' => 18,
+                'name' => 'Pacifica',
+                'division_id' => 3,
+                'specialist_id' => null,
+            ],
+            [
+                'id' => 19,
+                'name' => 'Pacifica Hybrid',
+                'division_id' => 3,
+                'specialist_id' => null,
+            ],
+            [
+                'id' => 20,
+                'name' => 'Voyage',
+                'division_id' => 3,
+                'specialist_id' => null,
+            ]
         ]);
     }
 }
