@@ -34,7 +34,6 @@ class ComboList extends Component
             
             </p>
 
-
             <div class="flex items-centertext-sm leading-relaxedml-3 text-xl font-semibold text-gray-900 dark:text-white">
                 Task List:
             </div>
@@ -45,6 +44,7 @@ class ComboList extends Component
             <p class="mt-4 text-sm">
             <!--footer / redirect--> 
             </p>
+
         </div>
         HTML;
     }
