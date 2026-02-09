@@ -21,6 +21,9 @@
                     <x-nav-link href="{{ route('specialist') }}" :active="request()->routeIs('specialist')">
                         {{ __('Specialist Management') }}
                     </x-nav-link>
+                    <x-nav-link href="{{ route('analytics') }}" :active="request()->routeIs('analytics')">
+                        {{ __('Analytics') }}
+                    </x-nav-link>
                     <!--
                     <x-nav-link href="{{ route('draftable') }}" :active="request()->routeIs('draftable')">
                         {{ __('Draftable') }}
@@ -160,6 +163,9 @@
             </x-responsive-nav-link>
             <x-responsive-nav-link href="{{ route('specialist') }}" :active="request()->routeIs('specialist')">
                 {{ __('Specialist Management') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link href="{{ route('analytics') }}" :active="request()->routeIs('analytics')">
+                {{ __('Analytics') }}
             </x-responsive-nav-link>
             <!--
             <x-responsive-nav-link href="{{ route('draftable') }}" :active="request()->routeIs('draftable')">

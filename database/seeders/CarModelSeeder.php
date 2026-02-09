@@ -694,9 +694,9 @@ class CarModelSeeder extends Seeder
             ],
             [
                 'id' => 114,
-                'name' => 'Model Not Listed',
+                'name' => 'Tri Glide Ultra',
                 'division_id' => 7,
-                'specialist_id' => null,
+                'specialist_id' => 0,
             ],
             [
                 'id' => 115,
@@ -881,9 +881,9 @@ class CarModelSeeder extends Seeder
             ],
             [
                 'id' => 145,
-                'name' => 'Tri Glide Ultra',
+                'name' => 'Model Not Listed',
                 'division_id' => 7,
-                'specialist_id' => 0,
+                'specialist_id' => null,
             ],
         ]);
     }
