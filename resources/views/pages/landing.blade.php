@@ -2,9 +2,9 @@
     <div class="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-dots-darker bg-center bg-gray-100 dark:bg-dots-lighter dark:bg-gray-900 selection:bg-teal-500 selection:text-white">
         @if (Route::has('login'))
             <div class="sm:fixed sm:top-0 sm:right-0 p-6 text-right z-10 flex flex-col justify-items-center justify-between items-center">
-                <div class="flex flex-row justify-center items-center mb-2">
-                    <a href="{{url('/')}}"><x-application-mark class="" /></a>
-                    <div>
+                <div class="flex flex-row items-center mb-2 pr-4">
+                    <a href="{{url('/')}}"><x-application-mark class="pr-4" /></a>
+                    <div class="pr-4 pl-4">
                     @livewire('lightButton')
                     </div>
                 </div>

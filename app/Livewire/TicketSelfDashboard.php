@@ -44,6 +44,7 @@ class TicketSelfDashboard extends Component
         'tickets' => Ticket::where('specialist_id', auth()->id())
         ->orderByDesc('id')
         ->paginate($this->ticketsPerPage),
+        'specialist_name' => explode(' ', auth()->user()->name)[0]
         ]);
     }
 }

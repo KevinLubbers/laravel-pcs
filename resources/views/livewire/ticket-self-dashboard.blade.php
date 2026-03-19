@@ -2,7 +2,7 @@
 
     <div class="flex items-center">
         <h2 class="text-xl font-semibold text-gray-900 dark:text-white">
-            Your Tickets:
+            {{ $specialist_name }}'s Tickets:
         </h2>
     </div>
 
