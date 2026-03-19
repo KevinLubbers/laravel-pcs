@@ -38,7 +38,7 @@
             </p>
     </div>
 
-    <livewire:combolist lazy />
+    <livewire:combo-list lazy />
 
 </div>
 
