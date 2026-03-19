@@ -94,7 +94,6 @@ new class extends Component {
     $this->dispatch('ticket-created', ticket: $new);
     session()->flash('success','Ticket Created Successfully!');
     Mail::to($new->email)->cc($new->users->email)->send(new SendPCS($new));
-    return redirect()->to('/');
 	}
     public function mount(){
         $this->tasks = TicketTask::all();
@@ -112,13 +111,13 @@ new class extends Component {
         <div class="mb-4 bg-green-100 border border-green-300 text-green-800 px-4 py-3 rounded relative dark:text-green-300 dark:border-green-600 dark:bg-green-900">{{session('success')}}</div>
     @endif
     <x-label class="mt-12" for="email" value="{{ __('Email') }}" />
-    <x-input wire:model="email"  class="rounded-md dark:bg-gray-800" id="email" type="email" name="email" required autofocus autocomplete="off" />
+    <x-input wire:model.defer="email"  class="rounded-md dark:bg-gray-800" id="email" type="email" name="email" required autofocus autocomplete="work-email" />
     @error('email')
         <p class="text-red-400 text-xs mt-2 mb-2">{{$message}}</p>
     @enderror
 
     <x-label class="mt-4" for="task" value="{{ __('Task') }}" />
-    <select wire:model="task" style="" class="mt-1 block mb-2 rounded-md text-gray-600 border-gray-300   dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 shadow-sm">
+    <select wire:model.defer="task" style="" class="mt-1 block mb-2 rounded-md text-gray-600 border-gray-300   dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 shadow-sm">
         <option value="0" selected>Select Task</option>
         @forelse($tasks ?? [] as $task)
             <option value="{{$task->id}}">{{$task->name}}</option>
@@ -168,7 +167,7 @@ new class extends Component {
     @enderror
 
     <x-label class="mt-4" for="misc" value="{{ __('Trim / Packages / Drivetrain') }}" />
-    <x-input wire:model="misc" class="mt-1" placeholder="Texas Trail 4x4" type="text" name="misc" id="misc" autocomplete="off" />
+    <x-input wire:model.defer="misc" class="mt-1" placeholder="Texas Trail 4x4" type="text" name="misc" id="misc" autocomplete="off" />
     @error('misc')
         <p class="text-red-400 text-xs mt-2 mb-2">{{$message}}</p>
     @enderror
@@ -213,7 +212,7 @@ new class extends Component {
     @error('info_type')
         <p class="text-red-400 text-xs mt-2 mb-2">{{$message}}</p>
     @enderror
-    <x-input wire:model="info_number" x-on:input=" if (selected_box !== 'name') {$el.value = $el.value.replace(/[^0-9]/g, '')} else {$el.value = $el.value.replace(/[^a-zA-Z ]/g, '')} "
+    <x-input wire:model.defer="info_number" x-on:input=" if (selected_box !== 'name') {$el.value = $el.value.replace(/[^0-9]/g, '')} else {$el.value = $el.value.replace(/[^a-zA-Z ]/g, '')} "
     x-ref="infoNumber"
     x-bind:placeholder="selected_box === 'customer' ? 'Customer 9 Number' : (selected_box === 'fo' ? '6 Digit FO Number' : selected_box === 'name' ? 'Customer Name' : '' )"
     x-bind:maxlength="selected_box === 'customer' ? 10 : (selected_box === 'fo' ? 6 : selected_box === 'name' ? 35 : '' )"
@@ -224,12 +223,12 @@ new class extends Component {
     @enderror
 
     <x-label class="mt-4" for="description" value="{{ __('Description of Issue') }}" />
-    <textarea wire:model="details" placeholder="Help me!"style="" class="mt-1 block mb-2 rounded-md text-gray-600 border-gray-300   dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 shadow-sm" name="description" id="description" autocomplete="off" ></textarea>
+    <textarea wire:model.defer="details" placeholder="Help me!"style="" class="mt-1 block mb-2 rounded-md text-gray-600 border-gray-300   dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 shadow-sm" name="description" id="description" autocomplete="off" ></textarea>
     @error('details')
         <p class="text-red-400 text-xs mt-2 mb-2">{{$message}}</p>
     @enderror
 
-    <input wire:model="attachments" accept="application/pdf,image/*" type="file" multiple="multiple" name="file" id="file" class="mt-1 block mb-2 rounded-md text-gray-600 border-gray-300   dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 shadow-sm">
+    <input wire:model.defer="attachments" accept="application/pdf,image/*" type="file" multiple="multiple" name="file" id="file" class="mt-1 block mb-2 rounded-md text-gray-600 border-gray-300   dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 shadow-sm">
 
     <x-button class="mt-4 mb-6" type="submit">
         {{ __('Send') }}

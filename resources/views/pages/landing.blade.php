@@ -25,5 +25,25 @@
         @endif
 
         <livewire:ticket-form />
+        <div x-data="{ show: false }" x-show="show" x-on:ticket-created.window="show = !show">
+            <x-dialog-modal>
+                <x-slot name="title">
+                    <div>{{ __('Ticket Submitted') }}</div>
+                    <hr>
+                </x-slot>
+                <x-slot name="content">
+                    <div class="mt-4">
+                        <p class="mb-4">Your ticket has been submitted successfully!</p>
+                        <p>An email should arrive in your inbox shortly</p>
+                        <p class="mt-8">Please do not submit multiple tickets for the same issue</p>
+                    </div>
+                </x-slot>
+                <x-slot name="footer">
+                    <x-button @click="show = !show" >
+                        {{ __('Close') }}
+                    </x-button>
+                </x-slot>
+            </x-dialog-modal>
+        </div>
     </div>
 </x-guest-layout>
