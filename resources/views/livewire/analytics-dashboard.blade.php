@@ -3,10 +3,35 @@
 use Livewire\Volt\Component;
 
 new class extends Component {
-    //
+    public $range;
+    public $selectedQuery;
+
 }; ?>
 
 <div>
+    <div class="flex flex-row">
+        <div class="flex flex-col mr-4">
+            <x-label for="range" value="{{ __('Select a Date Range') }}" />
+            <select wire:model="range" class="mt-1 block mb-2 rounded-md text-gray-600 border-gray-300   dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 shadow-sm">
+                <option value="today">Today</option>
+                <option value="7">Last 7 Days</option>
+                <option value="30">Last 30 Days</option>
+                <option value="all">All Time</option>
+                <option value="custom">Custom</option>
+            </select>
+        </div>
+        <div class="flex flex-col ml-4">
+            <x-label for="selectedQuery" value="{{ __('Select a Query') }}" />
+            <select wire:model="selectedQuery" class="mt-1 block mb-2 rounded-md text-gray-600 border-gray-300   dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 shadow-sm">
+                <option value="ticketsPerSpecialist">(Count) Tickets Resolved per Specialist</option>
+                <option value="divisionAvg">(Count) Tickets Submitted per Division</option>
+                <option value="ticketsPerISR">(Count) Tickets Submitted per ISR</option>
+                <option value="responseTime">(Average) Response Time per Specialist</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- chart starts here -->
     <div wire:ignore
      x-data="chartComponent()"
      x-init="requestAnimationFrame(() => initChart())"
@@ -37,7 +62,6 @@ new class extends Component {
                 };
             },
 
-            // 🔥 NEW: build chart config in one place
             getChartConfig(data = { labels: [], values: [] }) {
                 const colors = this.getChartColors();
 
@@ -86,15 +110,13 @@ new class extends Component {
                 this.chartLabel = label;
                 this.chartTitle = title;
 
-                this.rebuildChart(); // 🔥 reuse your existing method
+                this.rebuildChart();
             },
             initChart() {
                 const ctx = document.getElementById('ticketChart');
 
-                // create empty chart
                 this.chart = new Chart(ctx, this.getChartConfig());
 
-                // 🔥 WATCH FOR DARK MODE CHANGES
                 const observer = new MutationObserver(() => {
                     this.rebuildChart();
                 });
@@ -105,7 +127,6 @@ new class extends Component {
                 });
             },
 
-            // 🔥 NEW: fully rebuild chart on theme change
             rebuildChart() {
                 if (!this.chart) return;
 
