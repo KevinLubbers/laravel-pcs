@@ -10,5 +10,6 @@
     </p>
 </div>
 
-<div> 
+<div class="bg-gray-200 dark:bg-gray-800 text-gray-900 dark:text-white bg-opacity-25 gap-6 lg:gap-8 p-6 lg:p-8">
+  <livewire:analytics-dashboard />
 </div>
