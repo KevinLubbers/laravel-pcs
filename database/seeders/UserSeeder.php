@@ -29,7 +29,7 @@ class UserSeeder extends Seeder
         User::create([
             'id' => 3,
             'name' => 'John Ippolito',
-            'email' => 'jippol@militarycars.com',
+            'email' => 'jippolit@militarycars.com',
             'password' => Hash::make('password'),
         ]);
         User::create([
@@ -53,7 +53,7 @@ class UserSeeder extends Seeder
         User::create([
             'id' => 7,
             'name' => 'Todd Favor',
-            'email' => 'tfavor@militarycars.com',
+            'email' => 'tfaver@militarycars.com',
             'password' => Hash::make('password'),
         ]);
         User::create([

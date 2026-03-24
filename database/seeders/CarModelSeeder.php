@@ -46,7 +46,7 @@ class CarModelSeeder extends Seeder
             ],
             [
                 'id' => 6,
-                'name' => 'Q7 Quattro',
+                'name' => 'Q7 45 Quattro',
                 'division_id' => 1,
                 'specialist_id' => null,
             ],
@@ -64,13 +64,13 @@ class CarModelSeeder extends Seeder
             ],
             [
                 'id' => 9,
-                'name' => 'Q8 Quattro',
+                'name' => 'Q8 55 Quattro',
                 'division_id' => 1,
                 'specialist_id' => null,
             ],
             [
                 'id' => 10,
-                'name' => 'RS Q8 Quattro',
+                'name' => 'RS Q8 Performance',
                 'division_id' => 1,
                 'specialist_id' => null,
             ],
@@ -124,7 +124,7 @@ class CarModelSeeder extends Seeder
             ],
             [
                 'id' => 19,
-                'name' => 'Pacifica Hybrid',
+                'name' => 'Pacifica PHEV',
                 'division_id' => 3,
                 'specialist_id' => null,
             ],
@@ -142,7 +142,7 @@ class CarModelSeeder extends Seeder
             ],
             [
                 'id' => 22,
-                'name' => 'Ram 1500 Mega Cab',
+                'name' => 'Ram 1500 Quad Cab',
                 'division_id' => 14,
                 'specialist_id' => null,
             ],
@@ -376,9 +376,9 @@ class CarModelSeeder extends Seeder
             ],
             [
                 'id' => 61,
-                'name' => 'F-350 DRW Super Cab',
-                'division_id' => 6,
-                'specialist_id' => 3,
+                'name' => 'A5 Quattro',
+                'division_id' => 1,
+                'specialist_id' => null,
             ],
             [
                 'id' => 62,
@@ -490,8 +490,8 @@ class CarModelSeeder extends Seeder
             ],
             [
                 'id' => 80,
-                'name' => 'CR-Z',
-                'division_id' => 8,
+                'name' => 'A8 L 55 Quattro',
+                'division_id' => 1,
                 'specialist_id' => null,
             ],
             [
@@ -538,13 +538,13 @@ class CarModelSeeder extends Seeder
             ],
             [
                 'id' => 88,
-                'name' => 'Altima L',
+                'name' => 'Kicks',
                 'division_id' => 13,
                 'specialist_id' => null,
             ],
             [
                 'id' => 89,
-                'name' => 'Altima L',
+                'name' => 'Sentra',
                 'division_id' => 13,
                 'specialist_id' => null,
             ],
@@ -586,7 +586,7 @@ class CarModelSeeder extends Seeder
             ],
             [
                 'id' => 96,
-                'name' => 'Z Proto Spec',
+                'name' => 'Z',
                 'division_id' => 13,
                 'specialist_id' => null,
             ],
@@ -883,6 +883,78 @@ class CarModelSeeder extends Seeder
                 'id' => 145,
                 'name' => 'Model Not Listed',
                 'division_id' => 7,
+                'specialist_id' => null,
+            ],
+            [
+                'id' => 146,
+                'name' => 'S5 Quattro',
+                'division_id' => 1,
+                'specialist_id' => null,
+            ],
+            [
+                'id' => 147,
+                'name' => 'RS 6 Avant',
+                'division_id' => 1,
+                'specialist_id' => null,
+            ],
+            [
+                'id' => 148,
+                'name' => 'RS 7',
+                'division_id' => 1,
+                'specialist_id' => null,
+            ],
+            [
+                'id' => 149,
+                'name' => 'S8 Quattro',
+                'division_id' => 1,
+                'specialist_id' => null,
+            ],
+            [
+                'id' => 150,
+                'name' => 'Q3 S Line Quattro',
+                'division_id' => 1,
+                'specialist_id' => null,
+            ],
+            [
+                'id' => 151,
+                'name' => 'Q5 Quattro',
+                'division_id' => 1,
+                'specialist_id' => null,
+            ],
+            [
+                'id' => 152,
+                'name' => 'Q5 Quattro Sportback',
+                'division_id' => 1,
+                'specialist_id' => null,
+            ],
+            [
+                'id' => 153,
+                'name' => 'Corolla Hatchback',
+                'division_id' => 15,
+                'specialist_id' => null,
+            ],
+            [
+                'id' => 154,
+                'name' => 'SQ5 Quattro',
+                'division_id' => 1,
+                'specialist_id' => null,
+            ],
+            [
+                'id' => 155,
+                'name' => 'SQ5 Quattro Sportback',
+                'division_id' => 1,
+                'specialist_id' => null,
+            ],
+            [
+                'id' => 156,
+                'name' => 'Q7 55 Quattro',
+                'division_id' => 1,
+                'specialist_id' => null,
+            ],
+            [
+                'id' => 157,
+                'name' => 'Q7 55 S Line Quattro',
+                'division_id' => 1,
                 'specialist_id' => null,
             ],
         ]);
