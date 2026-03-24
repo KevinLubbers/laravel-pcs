@@ -268,7 +268,7 @@ class CarModelSeeder extends Seeder
             ],
             [
                 'id' => 43,
-                'name' => 'Camaro',
+                'name' => 'Equinox',
                 'division_id' => 2,
                 'specialist_id' => null,
             ],

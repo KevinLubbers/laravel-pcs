@@ -27,13 +27,13 @@ class TaskSeeder extends Seeder
         ]);
         TicketTask::create([
             'id' => 3,
-            'name' => 'MQII Issue',
+            'name' => 'MQII Issue - Must Provide Screen Shot of Error',
             'specialist_id' => 0,
             'cc_id' => 0,
         ]);
         TicketTask::create([
             'id' => 4,
-            'name' => 'PC Carbook Quote',
+            'name' => 'PC Carbook Quote - Must Provide Customer 9 Number',
             'specialist_id' => 8,
             'cc_id' => 0,
         ]);

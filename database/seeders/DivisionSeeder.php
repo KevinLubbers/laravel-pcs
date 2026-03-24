@@ -51,12 +51,12 @@ class DivisionSeeder extends Seeder
         Division::create([
             'id' => 8,
             'name' => 'Honda',
-            'specialist_id' => 0,
+            'specialist_id' => 5,
         ]);
         Division::create([
             'id' => 9,
             'name' => 'Infiniti',
-            'specialist_id' => 0,
+            'specialist_id' => 6,
         ]);
         Division::create([
             'id' => 10,
@@ -66,7 +66,7 @@ class DivisionSeeder extends Seeder
         Division::create([
             'id' => 11,
             'name' => 'Lexus',
-            'specialist_id' => 0,
+            'specialist_id' => 2,
         ]);
         Division::create([
             'id' => 12,
@@ -76,7 +76,7 @@ class DivisionSeeder extends Seeder
         Division::create([
             'id' => 13,
             'name' => 'Nissan',
-            'specialist_id' => 0,
+            'specialist_id' => 6,
         ]);
         Division::create([
             'id' => 14,
@@ -86,7 +86,7 @@ class DivisionSeeder extends Seeder
         Division::create([
             'id' => 15,
             'name' => 'Toyota',
-            'specialist_id' => 0,
+            'specialist_id' => 2,
         ]);
         Division::create([
             'id' => 16,

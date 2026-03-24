@@ -26,14 +26,14 @@
             <h1 class="text-center text-2xl">Frequently Asked Questions</h1>
                 <hr>
                 <ol class="list-[upper-roman] list-inside">
-                    <li class="mt-6">How will I know if my ticket was submitted sucessfully?</li>
-                    <ul class="mb-4 list-disc list-inside"><li>An email will be sent to the email you provided and a green flash notification should appear</li></ul></li>
+                    <li class="mt-6">How will I know if my ticket was submitted successfully?</li>
+                    <ul class="mb-4 list-disc list-inside"><li>An email will be sent to the email you provided and a green flash notification should appear.</li></ul></li>
                     <li>What is the State Side Bonus for this vehicle?</li>
-                    <ul class="mb-4 list-disc list-inside"><li>Attached is the Excel Spreadsheet that lists bonus amounts - <a href="#">Click Here</a> -</li></ul>
-                    <li>What is the deposit for this vehicle?</li>
-                    <ul class="mb-4 list-disc list-inside"><li>Attached is the screenshot for deposit amounts - <a href="#">Click Here</a> -</li></ul>
+                    <ul class="mb-4 list-disc list-inside"><li>Attached is the Excel Spreadsheet that lists bonus amounts - <a href="{{ asset('files/SPO-Discounts-12-2025-Field.pdf')}}">Click Here</a> -</li></ul>
+                    <li>What is the minimum SPO deposit for factory ordering a vehicle?</li>
+                    <ul class="mb-4 list-disc list-inside"><li>Attached is the screenshot for deposit amounts - <a href="{{ asset('files/8-7-2025-OE-Min-Deposit.png') }}">Click Here</a> -</li></ul>
                     <li>Can I submit multiple tickets for the same issue?</li>
-                    <ul class="list-disc list-inside"><li>No, please do not submit multiple tickets for the same issue</li></ul>
+                    <ul class="list-disc list-inside"><li>No, please do not submit multiple tickets for the same issue.</li></ul>
                 </ol>
 
         </div>

@@ -92,7 +92,7 @@ new class extends Component {
     ]);
     $this->reset();
     $this->dispatch('ticket-created', ticket: $new);
-    session()->flash('success','Ticket Created Successfully!');
+    session()->flash('success','PCS Ticket Created Successfully!');
     Mail::to($new->email)->cc($new->users->email)->send(new SendPCS($new));
 	}
     public function mount(){
@@ -129,7 +129,7 @@ new class extends Component {
         <p class="text-red-400 text-xs mt-2 mb-2">{{$message}}</p>
     @enderror
 
-    <x-label class="mt-4" for="year" value="{{ __('Year') }}" />
+    <x-label class="mt-4" for="year" value="{{ __('Vehicle Year') }}" />
     <select style="" wire:model.defer="year" class="mt-1 block mb-2 rounded-md text-gray-600 border-gray-300   dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 shadow-sm">
         <option value="0" selected>Select Year</option>
         @foreach(range(now()->year - 1, now()->year + 2) as $y)
@@ -207,7 +207,7 @@ new class extends Component {
                     $nextTick(() => $refs.infoNumber.focus());
                 }" id="name" name="name" value="name" />
             </div>
-            <div><x-label for="name" value="{{ __('Customer Name') }}" /></div>
+            <div><x-label for="name" value="{{ __('New Customer') }}" /></div>
         </div>
     @error('info_type')
         <p class="text-red-400 text-xs mt-2 mb-2">{{$message}}</p>
