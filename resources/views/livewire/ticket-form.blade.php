@@ -156,7 +156,7 @@ new class extends Component {
     <x-label class="mt-4" for="model" value="{{ __('Model') }}" />
     <select wire:model="model" style="" class="mt-1 block mb-2 rounded-md text-gray-600 border-gray-300   dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 shadow-sm">
         <option value="0" selected>Select Model after Division</option>
-	@forelse($models ?? [] as $model)
+	@forelse(collect($models)->sortBy('name') ?? [] as $model)
 		<option value="{{$model->id}}">{{$model->name}}</option>
 	@empty
         <option value="0">No Models - Please Select A Division</option>
