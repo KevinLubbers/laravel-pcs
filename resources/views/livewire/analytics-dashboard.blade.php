@@ -44,6 +44,7 @@ new class extends Component {
 
             case 'ticketsPerSpecialist':
                 $data = $query
+                    ->where('tickets.status', 'completed')
                     ->join('users', 'tickets.specialist_id', '=', 'users.id')
                     ->selectRaw('users.name as label, COUNT(*) as count')
                     ->groupBy('users.name')

@@ -7,11 +7,9 @@ use App\Models\Division;
 use App\Models\CarModel;
 use Livewire\Attributes\On;
 use Livewire\Component;
-use Livewire\WithPagination;
 
 class MaintenanceList extends Component
 {
-    use WithPagination;
     public $divisions;
     public $specialists;
     
@@ -92,7 +90,7 @@ class MaintenanceList extends Component
         ->get();
 
         foreach ($this->divisions as $division) {
-            $division->models = $division->models()->select('id', 'name', 'division_id')->paginate(10);
+            $division->models = $division->models()->select('id', 'name', 'division_id')->get();
         }
 
 
