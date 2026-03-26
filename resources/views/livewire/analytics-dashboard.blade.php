@@ -40,8 +40,8 @@ new class extends Component {
             default:
                 break;
         }
+        //Query Case Start
         switch ($this->selectedQuery) {
-
             case 'ticketsPerSpecialist':
                 $data = $query
                     ->where('tickets.status', 'completed')
@@ -94,6 +94,7 @@ new class extends Component {
                 $title = 'Average Completion Time per Specialist';
                 break;
         }
+        //Query Case End
 
         $rangeText = match ($this->range) {
             'today' => ' (Today)',

@@ -64,9 +64,13 @@ The Application Key is used during encryption / decryption, signing URLs, and pa
 ./vendor/bin/sail npm run dev
 ```
 ## 6. Open your web browser and visit localhost to see my work
-A test account is included in the seeder. Log in and test the functionality. Tell me if you like how it looks.
+A test / demo account has been included in the seeder. Log in and test the functionality. 
+
+You can visit the [site](https://pcsgroup.info/login) instead and tell me what you think.
  - username: test@gmail.com
  - password: password
+ > [!NOTE]
+ > The demo account has restricted permissions, not all functionality is available to test
  
 ## WIP - Currently Working on
 - [x] ~~Write FAQ Section~~
@@ -74,8 +78,8 @@ A test account is included in the seeder. Log in and test the functionality. Tel
 - [x] ~~Remove Draftable from Nav Bar~~
 - [x] ~~Backlog: Add FAQ or Instructions highlighted in nav when on that page~~
 - [x] ~~Flesh out Model Seeder~~
-- [ ] Backlog: Edit Model modal - auto select populate specialist
-- [ ] Backlog: Add Analytics Page 
+- [x] ~~Backlog: Add Analytics Page~~ 
+- [x] ~~Backlog: Edit Model modal - auto select populate specialist~~
 
 
  
