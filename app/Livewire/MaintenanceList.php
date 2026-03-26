@@ -95,7 +95,7 @@ class MaintenanceList extends Component
 
 
             return <<<'HTML'
-                <div class="pl-4 mt-1 block mb-2 rounded-md text-gray-600 border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 shadow-sm">
+                <div class="pl-4 mt-1 block mb-2 rounded-lg shadow text-gray-600 border border-gray-300 dark:border-gray-400 bg-white dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 shadow-sm">
                     @if(session('success'))
                         <div class="mb-4 bg-green-100 border border-green-300 text-green-800 px-4 py-3 rounded relative dark:text-green-300 dark:border-green-600 dark:bg-green-900">
                             {{session('success')}}
@@ -125,10 +125,11 @@ class MaintenanceList extends Component
 
 
                                 <div class="flex flex-row items-center">
-                                    ├─────&nbsp;{{$model->name}}
-                                    
                                     <img @click="unlockClicked = !unlockClicked" wire:click="$dispatch('edit-model', {id: {{$model->id}}, name: '{{$model->name}}', specialist: {{$model->specialist_id}}, title: 'Edit Model'})" height="16px" width="16px" class="mr-2 ml-4 cursor-pointer" :src="!darkMode ? '{{url($light)}}' : '{{url($dark)}}'" >
                                     <img @click="deleteClicked = !deleteClicked" wire:click="deleteModel({{$model->id}})" wire:confirm="Are you sure you want to DELETE - {{$model->name}}"  height="16px" width="16px" class="mr-1 ml-2 cursor-pointer" :src="!darkMode ? '{{url($dLight)}}' : '{{url($dDark)}}'" >
+                                    ├─────&nbsp;
+                                    {{$model->name}}
+                                    
                                 </div>
                                
 
