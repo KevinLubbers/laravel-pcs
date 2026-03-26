@@ -128,6 +128,8 @@ class MaintenanceList extends Component
                                     <img @click="unlockClicked = !unlockClicked"
                                     @if($model->specialist_id)
                                         wire:click="$dispatch('edit-model', {id: {{$model->id}}, name: '{{$model->name}}', specialist: {{$model->specialist_id}}, title: 'Edit Model'})"
+                                    @else
+                                        wire:click="$dispatch('edit-model', {id: {{$model->id}}, name: '{{$model->name}}', specialist: 0, title: 'Edit Model'})"
                                     @endif
                                     height="16px" width="16px" class="mr-2 ml-4 cursor-pointer"
                                     :src="!darkMode ? '{{url($light)}}' : '{{url($dark)}}'" >
