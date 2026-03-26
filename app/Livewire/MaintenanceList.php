@@ -125,7 +125,12 @@ class MaintenanceList extends Component
 
 
                                 <div class="flex flex-row items-center">
-                                    <img @click="unlockClicked = !unlockClicked" wire:click="$dispatch('edit-model', {id: {{$model->id}}, name: '{{$model->name}}', specialist: {{$model->specialist_id}}, title: 'Edit Model'})" height="16px" width="16px" class="mr-2 ml-4 cursor-pointer" :src="!darkMode ? '{{url($light)}}' : '{{url($dark)}}'" >
+                                    <img @click="unlockClicked = !unlockClicked"
+                                    @if($model->specialist_id)
+                                        wire:click="$dispatch('edit-model', {id: {{$model->id}}, name: '{{$model->name}}', specialist: {{$model->specialist_id}}, title: 'Edit Model'})"
+                                    @endif
+                                    height="16px" width="16px" class="mr-2 ml-4 cursor-pointer"
+                                    :src="!darkMode ? '{{url($light)}}' : '{{url($dark)}}'" >
                                     <img @click="deleteClicked = !deleteClicked" wire:click="deleteModel({{$model->id}})" wire:confirm="Are you sure you want to DELETE - {{$model->name}}"  height="16px" width="16px" class="mr-1 ml-2 cursor-pointer" :src="!darkMode ? '{{url($dLight)}}' : '{{url($dDark)}}'" >
                                     ├─────&nbsp;
                                     {{$model->name}}
