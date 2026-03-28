@@ -67,6 +67,7 @@ class UserSeeder extends Seeder
             'name' => 'Test User',
             'email' => 'test@gmail.com',
             'password' => Hash::make('password'),
+            'is_demo_user' => true,
         ]);
     }
 }

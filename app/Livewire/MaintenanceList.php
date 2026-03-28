@@ -7,6 +7,7 @@ use App\Models\Division;
 use App\Models\CarModel;
 use Livewire\Attributes\On;
 use Livewire\Component;
+use Illuminate\Support\Facades\Gate;
 
 class MaintenanceList extends Component
 {
@@ -24,6 +25,10 @@ class MaintenanceList extends Component
     }
 
     public function deleteModel($id){
+        if (Gate::denies('make-changes')) {
+            session()->flash('error', 'Demo users cannot make changes.');
+            return;
+        }
         $model = CarModel::find($id);
         $model->delete();
         request()->session()->flash('success',$model->name .' Deleted Successfully!');
@@ -31,6 +36,10 @@ class MaintenanceList extends Component
     }
 
     public function deleteSpecialist($id){
+        if (Gate::denies('make-changes')) {
+            session()->flash('error', 'Demo users cannot make changes.');
+            return;
+        }
         $division= Division::find($id);
         $division->specialist_id = null;
         $division->save();
@@ -38,6 +47,10 @@ class MaintenanceList extends Component
     }
 
     public function deleteDivision($id){
+        if (Gate::denies('make-changes')) {
+            session()->flash('error', 'Demo users cannot make changes.');
+            return;
+        }
         $division= Division::find($id);
         $division->delete();
         request()->session()->flash('success','Division Deleted Successfully!');
@@ -101,6 +114,11 @@ class MaintenanceList extends Component
                             {{session('success')}}
                         </div>
                     @endif
+                    @if(session('error'))
+                        <div class="mb-4 bg-red-100 border border-red-300 text-red-800 px-4 py-3 rounded relative dark:text-red-300 dark:border-red-600 dark:bg-red-900">
+                            {{session('error')}}
+                        </div>
+                    @endif
                     <div class="flex flex-col" x-data="{unlockClicked: false, deleteClicked: false}">
                         
                         @forelse($divisions as $division)
@@ -129,7 +147,7 @@ class MaintenanceList extends Component
                                     @if($model->specialist_id)
                                         wire:click="$dispatch('edit-model', {id: {{$model->id}}, name: '{{$model->name}}', specialist: {{$model->specialist_id}}, title: 'Edit Model'})"
                                     @else
-                                        wire:click="$dispatch('edit-model', {id: {{$model->id}}, name: '{{$model->name}}', specialist: 0, title: 'Edit Model'})"
+                                        wire:click="$dispatch('edit-model', {id: {{$model->id}}, name: '{{$model->name}}', specialist: null, title: 'Edit Model'})"
                                     @endif
                                     height="16px" width="16px" class="mr-2 ml-4 cursor-pointer"
                                     :src="!darkMode ? '{{url($light)}}' : '{{url($dark)}}'" >

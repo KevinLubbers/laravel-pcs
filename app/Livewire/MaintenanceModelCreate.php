@@ -8,6 +8,7 @@ use App\Models\CarModel;
 use App\Models\Division;
 use Livewire\Component;
 use Livewire\Attributes\On;
+use Illuminate\Support\Facades\Gate;
 
 class MaintenanceModelCreate extends Component
 {
@@ -18,6 +19,10 @@ class MaintenanceModelCreate extends Component
     public $division_id = null;
 
     public function createModel(){
+        if (Gate::denies('make-changes')) {
+            session()->flash('error', 'Demo users cannot make changes.');
+            return;
+        }
         $this->validate([
             "name"=> "required|min:3|max:50",
             "specialist_id"=> "nullable|integer",

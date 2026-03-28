@@ -2,6 +2,11 @@
     @if(session('success'))
         <div class="mb-4 bg-green-100 border border-green-300 text-green-800 px-4 py-3 rounded relative dark:text-green-300 dark:border-green-600 dark:bg-green-900">{{session('success')}}</div>
     @endif
+    @if(session('error'))
+        <div class="mb-4 bg-red-200 border border-red-300 text-red-800 px-4 py-3 rounded relative dark:text-red-300 dark:border-red-600 dark:bg-red-900">
+            {{session('error')}}
+        </div>
+    @endif
     
         <x-label for="name" value="{{ __('Model Name') }}" />
         <x-input wire:model.live="name" autocomplete="off" class="mt-1 block w-full mb-2" type="text" placeholder="Enter Model Name" id="name" name="name" />

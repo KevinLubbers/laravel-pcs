@@ -6,7 +6,7 @@ use App\Models\User;
 use Livewire\Attributes\On;
 use App\Models\Division;
 use App\Models\CarModel;
-
+use Illuminate\Support\Facades\Gate;
 use Livewire\Component;
 
 class EditModal extends Component
@@ -21,31 +21,36 @@ class EditModal extends Component
     
 
     public function editModel($id, $name, $specialist){
-        //dd($id, $name, $specialist);
+        if (Gate::denies('make-changes')) {
+            session()->flash('error', 'Demo users cannot make changes.');
+            return;
+        }
 
        $model = CarModel::findOrFail($id); 
        $model->name = $name;
        
-       $model->specialist_id = $specialist;
-       /**if($model->specialist_id != "" && $model->specialist_id != 0 && $model->specialist_id != null){
-        $model->specialist_id = $specialist;
-       }
-       else{
-        $model->specialist_id = 0;
-       }**/
-       //dd($model->specialist_id, $specialist);
+        if($specialist != "" && $specialist != 0 && $specialist != null){
+            $model->specialist_id = $specialist;
+        }
+        else{
+            $model->specialist_id = null;
+        }
        $model->save();
        request()->session()->flash('success', $model->name . ' Updated Successfully!');
        $this->dispatch('model-edited');
     }
     public function editDivision($id, $name, $specialist){
+        if (Gate::denies('make-changes')) {
+            session()->flash('error', 'Demo users cannot make changes.');
+            return;
+        }
         $division = Division::findOrFail($id);
         $division->name = $name;
-        if(!is_null($division->specialist_id)){
+        if($specialist != "" && $specialist != 0 && $specialist != null){
             $division->specialist_id = $specialist;
         }
         else{
-            $division->specialist_id = 0;
+            $division->specialist_id = null;
         }
         $division->save();
         request()->session()->flash('success', $division->name .' Updated Successfully!');
@@ -75,6 +80,11 @@ class EditModal extends Component
                 {{session('success')}}
             </div>
         @endif
+        @if(session('error'))
+            <div class="mb-4 bg-red-200 border border-red-300 text-red-800 px-4 py-3 rounded relative dark:text-red-300 dark:border-red-600 dark:bg-red-900">
+                {{session('error')}}
+            </div>
+        @endif
         <div x-data="{ show: @entangle('isOpen'), id: '', name: '', specialist: '', title: '' }" x-show="show"
         @edit-division.window="show = !show, id = $event.detail.id, name = $event.detail.name, specialist = $event.detail.specialist, title = $event.detail.title"
         @edit-model.window="show = !show, id = $event.detail.id, name = $event.detail.name, specialist = $event.detail.specialist, title = $event.detail.title"  > 
@@ -90,7 +100,7 @@ class EditModal extends Component
                         @edit-model.window="$nextTick(() => $refs.namecheck.focus())" x-model="name" x-ref="namecheck" type="text" name="name" id="name" autocomplete="off" />
                         <x-label for="specialist" value="{{ __('Assign Specialist') }}" />
                         <select x-model="specialist" class="mt-1 block mb-2 rounded-md text-gray-600 border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 shadow-sm">
-                            <option value="0">Select Specialist</option>
+                            <option value="">Select Specialist</option>
                             @foreach($specialists as $id => $name)
                                 <option id="{{$id}}" value="{{$id}}" >{{$name}}</option>
                             @endforeach

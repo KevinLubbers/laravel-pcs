@@ -6,12 +6,17 @@ use App\Models\User;
 use Livewire\Attributes\On;
 use Livewire\Component;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Gate;
 
 class SpecialistCreate extends Component
 {
     public $name;
     public $email;
     public function createSpecialist(){
+        if (Gate::denies('make-changes')) {
+            session()->flash('error', 'Demo users cannot make changes.');
+            return;
+        }
         $this->validate([
             "name"=> "required|min:8|max:50",
             "email"=> "required|email|unique:users",
