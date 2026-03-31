@@ -422,6 +422,23 @@ class TicketSeeder extends Seeder
                 "created_at" => now(),
                 "updated_at" => now(),
             ],
+            [
+                "id" => 25,
+                "email" => "test25@militarycars.com",
+                "specialist_id" => 9,
+                "task_id" => 1,
+                "year" => "2026",
+                "division_id" => 1,
+                "model_id" => 1,
+                "misc" => "4x4",
+                "info_type" => "fo",
+                "info_number" => "123456",
+                "details" => "this is a test ticket, please help me. thanks for viewing my project! <3",
+                "attachments" => json_encode([]),
+                "status" => "unresolved",
+                "created_at" => now(),
+                "updated_at" => now(),
+            ],
         ]);
     }
 }

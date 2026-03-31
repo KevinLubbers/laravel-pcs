@@ -7,6 +7,7 @@ use App\Models\CarModel;
 use Livewire\Volt\Component;
 use App\Mail\SendPCS;
 use App\Models\Ticket;
+use Illuminate\Support\Facades\Gate;
 
 new class extends Component {
     
@@ -22,12 +23,20 @@ new class extends Component {
 
     
     public function resendTicket($id){
+        if (Gate::denies('make-changes')) {
+            session()->flash('error', 'Demo users cannot make changes.');
+            return;
+        }
         $ticket = Ticket::findOrFail($id);
         Mail::to($ticket->email)->cc($ticket->users->email)->send(new SendPCS($ticket));
         request()->session()->flash('success', 'Ticket Resent Successfully!');
         $this->dispatch('item-updated', id: $id);
     }
     public function reassignSpecialist($id, $specialist){
+        if (Gate::denies('make-changes')) {
+            session()->flash('error', 'Demo users cannot make changes.');
+            return;
+        }
         $ticket = Ticket::findOrFail($id);
         $ticket->specialist_id = $specialist;
         $ticket->save();
