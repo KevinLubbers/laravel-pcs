@@ -16,7 +16,7 @@
     <p><strong>Year:</strong> {{ $ticket->year }}</p>
     <p><strong>Division:</strong> {{ $ticket->divisions->name}}</p>
     <p><strong>Model:</strong> {{ $ticket->models->name}}</p>
-    <p><strong>Trim:</strong> {{ $ticket->misc}}</p>
+    <p><strong>Trim / Package:</strong> {{ $ticket->misc}}</p>
     <hr class="mb-2 mt-2">
     <p><strong>Info Type:</strong> {{ $ticket->info_type_label }}</p>
     <p><strong>Information:</strong> {{ $ticket->info_number }}</p>

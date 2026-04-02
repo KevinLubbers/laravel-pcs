@@ -57,7 +57,7 @@ class Ticket extends Model
         return match ($this->info_type) {
             'fo' => 'FO Number',
             'customer' => 'Customer Number',
-            'name' => 'Customer Name',
+            'name' => 'New Customer',
             default => 'No Customer Information',
         };
     }

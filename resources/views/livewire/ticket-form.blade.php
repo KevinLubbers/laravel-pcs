@@ -108,9 +108,6 @@ new class extends Component {
 
 <form wire:submit.prevent="create" enctype="multipart/form-data">
 <div>
-    @if(session('success'))
-        <div class="mb-4 bg-green-100 border border-green-300 text-green-800 px-4 py-3 rounded relative dark:text-green-300 dark:border-green-600 dark:bg-green-900">{{session('success')}}</div>
-    @endif
     <x-label class="mt-12" for="email" value="{{ __('Email') }}" />
     <x-input wire:model.defer="email"  class="rounded-md dark:bg-gray-800" id="email" type="email" name="email" required autofocus autocomplete="work-email" />
     @error('email')
@@ -215,7 +212,7 @@ new class extends Component {
     @enderror
     <x-input wire:model.defer="info_number" x-on:input=" if (selected_box !== 'name') {$el.value = $el.value.replace(/[^0-9]/g, '')} else {$el.value = $el.value.replace(/[^a-zA-Z ]/g, '')} "
     x-ref="infoNumber"
-    x-bind:placeholder="selected_box === 'customer' ? 'Customer Number' : (selected_box === 'fo' ? '6 Digit FO Number' : selected_box === 'name' ? 'Customer Name' : '' )"
+    x-bind:placeholder="selected_box === 'customer' ? 'Customer Number' : (selected_box === 'fo' ? '6 Digit FO Number' : selected_box === 'name' ? 'New Customer' : '' )"
     x-bind:maxlength="selected_box === 'customer' ? 10 : (selected_box === 'fo' ? 6 : selected_box === 'name' ? 35 : '' )"
     style="" type="text" name="information" id="information" autocomplete="off" />
     </div>
