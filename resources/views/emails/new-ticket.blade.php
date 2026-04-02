@@ -16,12 +16,13 @@
     <p><strong>Year:</strong> {{ $ticket->year }}</p>
     <p><strong>Division:</strong> {{ $ticket->divisions->name}}</p>
     <p><strong>Model:</strong> {{ $ticket->models->name}}</p>
+    <p><strong>Trim:</strong> {{ $ticket->misc}}</p>
     <hr class="mb-2 mt-2">
     <p><strong>Info Type:</strong> {{ $ticket->info_type_label }}</p>
     <p><strong>Information:</strong> {{ $ticket->info_number }}</p>
     <p><strong>Description:</strong> {{ $ticket->details }}</p>
     @foreach ($ticket->attachments as $file)
-        <a href="{{ asset('storage/' . $file) }}">Download attachment</a>
+        <a href="{{ asset('storage/' . $file) }}">View attachment</a>
     @endforeach
     </div>
 

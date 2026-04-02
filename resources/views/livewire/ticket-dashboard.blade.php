@@ -74,9 +74,12 @@
                         {{$ticket->details}}
                     </div>
                     <hr class="mb-2 mt-2">
-                    <div class="flex justify-evenly">
+                    <div class="flex flex-wrap justify-around">
                         <x-button @click="$dispatch('reassign', { 'id':{{ $ticket->id }}, 'name':'{{ $ticket->users->name }}', specialist:'{{ $ticket->specialist_id}}', 'mode':'reassign', 'title':'Reassign Ticket' })" class="mt-2 mb-2">
                             {{ __('Reassign Ticket') }}
+                        </x-button>
+                        <x-button @click="$dispatch('status', { 'id':{{ $ticket->id }}, 'status':'{{ $ticket->status }}', 'mode':'status', 'title':'Change Status' })" class="mt-2 mb-2">
+                            {{ __('Status') }}
                         </x-button>
                         <x-button wire:click="openAttachments({{ $ticket->id }})" class="mt-2 mb-2">
                             {{ __('View Attachment') }}

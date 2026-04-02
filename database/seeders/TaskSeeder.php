@@ -33,7 +33,7 @@ class TaskSeeder extends Seeder
         ]);
         TicketTask::create([
             'id' => 4,
-            'name' => 'PC Carbook Quote - Must Provide Customer 9 Number',
+            'name' => 'PC Carbook Quote - Must Provide Customer Number',
             'specialist_id' => 8,
             'cc_id' => 0,
         ]);

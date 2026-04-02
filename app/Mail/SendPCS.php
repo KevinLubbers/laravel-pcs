@@ -31,7 +31,7 @@ class SendPCS extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: "New Ticket - {$this->ticket->display_number} - {$this->ticket->info_type_label} : {$this->ticket->info_number}",
+            subject: "{$this->ticket->info_type_label} : {$this->ticket->info_number} - Model: {$this->ticket->models->name} - Ticket: {$this->ticket->display_number} - Task: {$this->ticket->tasks->name}",
         );
     }
 

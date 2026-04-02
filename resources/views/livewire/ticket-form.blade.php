@@ -94,6 +94,7 @@ new class extends Component {
     $this->dispatch('ticket-created', ticket: $new);
     session()->flash('success','PCS Ticket Created Successfully!');
     Mail::to($new->email)->cc($new->users->email)->send(new SendPCS($new));
+    $this->mount();
 	}
     public function mount(){
         $this->tasks = TicketTask::all();
@@ -214,7 +215,7 @@ new class extends Component {
     @enderror
     <x-input wire:model.defer="info_number" x-on:input=" if (selected_box !== 'name') {$el.value = $el.value.replace(/[^0-9]/g, '')} else {$el.value = $el.value.replace(/[^a-zA-Z ]/g, '')} "
     x-ref="infoNumber"
-    x-bind:placeholder="selected_box === 'customer' ? 'Customer 9 Number' : (selected_box === 'fo' ? '6 Digit FO Number' : selected_box === 'name' ? 'Customer Name' : '' )"
+    x-bind:placeholder="selected_box === 'customer' ? 'Customer Number' : (selected_box === 'fo' ? '6 Digit FO Number' : selected_box === 'name' ? 'Customer Name' : '' )"
     x-bind:maxlength="selected_box === 'customer' ? 10 : (selected_box === 'fo' ? 6 : selected_box === 'name' ? 35 : '' )"
     style="" type="text" name="information" id="information" autocomplete="off" />
     </div>
