@@ -93,7 +93,7 @@ new class extends Component {
     $this->reset();
     $this->dispatch('ticket-created', ticket: $new);
     session()->flash('success','PCS Ticket Created Successfully!');
-    Mail::to($new->email)->cc($new->users->email)->send(new SendPCS($new));
+    Mail::to($new->email)->cc($new->users->email)->send(new SendPCS($new))->replyTo($new->email);
     $this->mount();
 	}
     public function mount(){

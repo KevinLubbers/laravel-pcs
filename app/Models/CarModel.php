@@ -23,4 +23,7 @@ class CarModel extends Model
     public function divisions(){
         return $this->belongsTo(Division::class);
     }
+    public function users(){
+        return $this->belongsTo(User::class, 'specialist_id');
+    }
 }

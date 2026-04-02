@@ -142,7 +142,7 @@ class MaintenanceList extends Component
                             
 
 
-                                <div class="flex flex-row items-center">
+                                <div class="flex flex-row items-center" title="{{$model->users?->name ?? 'Specialist Not Set'}}">
                                     <img @click="unlockClicked = !unlockClicked"
                                     @if($model->specialist_id)
                                         wire:click="$dispatch('edit-model', {id: {{$model->id}}, name: '{{$model->name}}', specialist: {{$model->specialist_id}}, title: 'Edit Model'})"
