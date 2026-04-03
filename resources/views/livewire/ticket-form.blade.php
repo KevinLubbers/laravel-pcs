@@ -91,10 +91,10 @@ new class extends Component {
         'attachments' => $paths
     ]);
     $this->reset();
-    $this->dispatch('ticket-created', ticket: $new);
     session()->flash('success','PCS Ticket Created Successfully!');
-    Mail::to($new->email)->cc($new->users->email)->send(new SendPCS($new))->replyTo($new->email);
+    Mail::to($new->email)->cc($new->users->email)->send((new SendPCS($new))->replyTo($new->email));
     $this->mount();
+    $this->dispatch('ticket-created', ticket: $new);
 	}
     public function mount(){
         $this->tasks = TicketTask::all();

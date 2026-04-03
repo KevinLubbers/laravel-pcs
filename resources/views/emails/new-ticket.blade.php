@@ -21,6 +21,14 @@
     <p><strong>Info Type:</strong> {{ $ticket->info_type_label }}</p>
     <p><strong>Information:</strong> {{ $ticket->info_number }}</p>
     <p><strong>Description:</strong> {{ $ticket->details }}</p>
+    <p>
+        <strong>Attachments:</strong> {{ count($ticket->attachments) }}
+        @if (count($ticket->attachments) != 1)
+            Attachments
+        @else
+            Attachment
+        @endif
+    </p>
     @foreach ($ticket->attachments as $file)
         <a href="{{ asset('storage/' . $file) }}">View attachment</a>
     @endforeach
