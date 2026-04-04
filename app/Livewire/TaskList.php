@@ -8,6 +8,7 @@ use Livewire\Attribute\Reactive;
 use App\Models\TicketTask;
 use App\Models\User;
 use Livewire\Component;
+use Illuminate\Support\Facades\Gate;
 
 class TaskList extends Component
 {
@@ -27,6 +28,10 @@ class TaskList extends Component
         $this->specialists = User::pluck('name','id')->all();
     }
     public function delete($id){
+        if (Gate::denies('make-changes')) {
+            session()->flash('error', 'Demo users cannot make changes.');
+            return;
+        }
         $task = TicketTask::findOrFail($id);
         $task->delete();
         $this->dispatch('task-deleted')->to(TaskList::class);
@@ -34,6 +39,10 @@ class TaskList extends Component
     }
     #[On("edited-task-specialist")]
     public function updateSpecialist($id, $specialist){
+        if (Gate::denies('make-changes')) {
+            session()->flash('error', 'Demo users cannot make changes.');
+            return;
+        }
         $task = TicketTask::find($id);
         $task->specialist_id = $specialist;
         $task->save();
@@ -41,6 +50,10 @@ class TaskList extends Component
     }
     #[On("edited-task-cc")]
     public function updateCc($id, $cc){
+        if (Gate::denies('make-changes')) {
+            session()->flash('error', 'Demo users cannot make changes.');
+            return;
+        }
         $task = TicketTask::find($id);
         $task->cc_id = $cc;
         $task->save();
@@ -48,6 +61,10 @@ class TaskList extends Component
     }
     #[On("edited-task-name")]
     public function update($id, $name){
+        if (Gate::denies('make-changes')) {
+            session()->flash('error', 'Demo users cannot make changes.');
+            return;
+        }
         $task = TicketTask::find($id);
         $task->name = $name;
         $task->save();
@@ -80,6 +97,11 @@ class TaskList extends Component
         <div >
         @if(session('success'))
         <div class="mb-4 bg-green-100 border border-green-300 text-green-800 px-4 py-3 rounded relative dark:text-green-300 dark:border-green-600 dark:bg-green-900">{!!session('success')!!}</div>
+        @endif
+        @if(session('error'))
+            <div class="mb-4 bg-red-200 border border-red-300 text-red-800 px-4 py-3 rounded relative dark:text-red-300 dark:border-red-600 dark:bg-red-900">
+                {{session('error')}}
+            </div>
         @endif
         @forelse($tasks as $task)
         <div wire:key="task-{{$task->id}}" class="flex flex-row flex-wrap gap-6 justify-between p-6 items-center" x-data="{unlockClicked: false, deleteClicked: false, taskId: '{{$task->id}}', specialist: '{{$task->specialist_id}}', cc: '{{$task->cc_id}}'}">

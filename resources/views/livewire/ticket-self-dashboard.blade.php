@@ -34,7 +34,7 @@
                     <x-label class="" for="text" value="{{ $ticket->status_label }}" x-show="open" />
                 </div>
                 <p class="flex flex-row items-center  dark:text-gray-200"><x-label class="mr-2" for="id" value="{{ __('Ticket Id:') }}" /> {{ $ticket->display_number ?? "No Ticket Id"}}</p>
-                <p class="flex flex-row items-center  dark:text-gray-200"><x-label class="mr-2" for="id" value="{{ __('Date Submitted:') }}" /> {{ $ticket->created_at?->format('F d, Y') ?? "No Date"}}</p>
+                <p class="flex flex-row items-center  dark:text-gray-200"><x-label class="mr-2" for="id" value="{{ __('Date Submitted:') }}" /> {{ $ticket->created_at?->format('F d, Y g:i A') ?? "No Date"}}</p>
                 <hr class="mb-2 mt-2">
                 <p class="flex flex-row items-center  dark:text-gray-200"><x-label class="mr-2" for="specialist" value="{{ __('Assigned To:') }}" />{{ $ticket->users->name ?? "No Specialist"}}</p>
                 <p class="flex flex-row items-center  dark:text-gray-200"><x-label class="mr-2" for="email" value="{{ __('Submitted By:') }}" />{{ $ticket->email }}</p>

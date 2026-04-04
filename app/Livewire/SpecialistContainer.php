@@ -4,6 +4,7 @@ namespace App\Livewire;
 use Livewire\Attributes\On;
 use App\Models\User;
 use Livewire\Component;
+use Illuminate\Support\Facades\Gate;
 
 class SpecialistContainer extends Component
 {
@@ -17,18 +18,29 @@ class SpecialistContainer extends Component
    
     #[On(event: "edited-name")]
     public function editName($id, $name){
-
+        if (Gate::denies('make-changes')) {
+            session()->flash('error', 'Demo users cannot make changes.');
+            return;
+        }
         $this->name = $name;
         $this->validate([ 'name' => 'required|min:8|max:50']);
         User::where("id", $id)->update(["name"=> $name]);
     }
     #[On("edited-email")]
     public function editEmail($id, $email){
+        if (Gate::denies('make-changes')) {
+            session()->flash('error', 'Demo users cannot make changes.');
+            return;
+        }
         $this->email = $email;
         $this->validate(['email' => 'required|email|unique:users|max:50']);
         User::where("id", $id)->update(["email"=> $email]);
     }
     public function deleteSpecialist($id){
+        if (Gate::denies('make-changes')) {
+            session()->flash('error', 'Demo users cannot make changes.');
+            return;
+        }
         $specialist = User::findOrFail($id);
         $specialist->delete();
     }

@@ -43,7 +43,6 @@ new class extends Component {
         request()->session()->flash('success', 'Ticket Specialist Successfully Updated!');
         $this->dispatch('ticket-reassigned');
         $this->dispatch('item-updated', id: $id);
-        $this->resendTicket($id);
     }
     public function changeStatus($id, $status){
         $ticket = Ticket::findOrFail($id);

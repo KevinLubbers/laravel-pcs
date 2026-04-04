@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Fortify\Contracts\UpdatesUserPasswords;
+use Illuminate\Support\Facades\Gate;
 
 class UpdateUserPassword implements UpdatesUserPasswords
 {
@@ -18,6 +19,10 @@ class UpdateUserPassword implements UpdatesUserPasswords
      */
     public function update(User $user, array $input): void
     {
+        if (Gate::denies('make-changes')) {
+            session()->flash('error', 'Demo users cannot make changes.');
+            return;
+        }
         Validator::make($input, [
             'current_password' => ['required', 'string', 'current_password:web'],
             'password' => $this->passwordRules(),

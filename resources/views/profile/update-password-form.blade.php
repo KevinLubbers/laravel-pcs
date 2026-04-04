@@ -9,6 +9,11 @@
 
     <x-slot name="form">
         <div class="col-span-6 sm:col-span-4">
+            @if(session('error'))
+                <div class="mb-4 bg-red-200 border border-red-300 text-red-800 px-4 py-3 rounded relative dark:text-red-300 dark:border-red-600 dark:bg-red-900">
+                    {{session('error')}}
+                </div>
+            @endif
             @if (session()->has('message'))
                 <div class="mb-4 bg-green-100 border border-green-300 text-green-800 px-4 py-3 rounded relative dark:text-green-300 dark:border-green-600 dark:bg-green-900">{{session('message')}}</div>
             @endif
