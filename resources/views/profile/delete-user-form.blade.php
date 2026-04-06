@@ -28,6 +28,11 @@
             <x-slot name="content">
                 {{ __('Are you sure you want to delete your account? Once your account is deleted, all of its resources and data will be permanently deleted. Please enter your password to confirm you would like to permanently delete your account.') }}
 
+                @if(session('error'))
+                    <div class="mb-4 bg-red-200 border border-red-300 text-red-800 px-4 py-3 rounded relative dark:text-red-300 dark:border-red-600 dark:bg-red-900">
+                        {{session('error')}}
+                    </div>
+                @endif
                 <div class="mt-4" x-data="{}" x-on:confirming-delete-user.window="setTimeout(() => $refs.password.focus(), 250)">
                     <x-input type="password" class="mt-1 block w-3/4"
                                 autocomplete="current-password"
