@@ -102,6 +102,75 @@
             </div>
 
             @empty
+            <div x-data="{ open:false }" class="border dark:border-gray-400 rounded-lg shadow p-2 mb-2 bg-white dark:bg-gray-900">
+                <div class="flex flex-row items-center">
+                    <x-label class="mr-2" for="status" value="{{ __('Status:') }}" />
+                    <span class="inline-block w-3 h-3 rounded-full mr-2 bg-green-500">
+                    </span>
+                    <x-label class="" for="text" value="{{__('No Tickets') }}" x-show="open" />
+                </div>
+                <p class="flex flex-row items-center  dark:text-gray-200"><x-label class="mr-2" for="id" value="{{ __('Ticket Id:') }}" />No Tickets Found</p>
+                <p class="flex flex-row items-center  dark:text-gray-200"><x-label class="mr-2" for="id" value="{{ __('Date Submitted:') }}" />No Date</p>
+                <hr class="mb-2 mt-2">
+                <p class="flex flex-row items-center  dark:text-gray-200"><x-label class="mr-2" for="specialist" value="{{ __('Assigned To:') }}" />No Specialist</p>
+                <p class="flex flex-row items-center  dark:text-gray-200"><x-label class="mr-2" for="email" value="{{ __('Submitted By:') }}" />No Email</p>
+                <p class="flex flex-row items-center  dark:text-gray-200"><x-label class="mr-2" for="task" value="{{ __('Task:') }}" />{{ $ticket->tasks->name ?? "No Task"}}</p>
+                <hr class="mb-2 mt-2">
+                <p class="flex flex-row items-center  dark:text-gray-200"><x-label class="mr-2" for="year" value="{{ __('Year:') }}" />No Year</p>
+                <p class="flex flex-row items-center  dark:text-gray-200"><x-label class="mr-2" for="division" value="{{ __('Division:') }}" />No Division</p>
+                <p class="flex flex-row items-center  dark:text-gray-200"><x-label class="mr-2" for="model" value="{{ __('Model:') }}" />No Model</p>
+                <hr class="mb-2 mt-2">
+                <div class="accordion items-center  dark:text-gray-200" x-transition x-on:click="open = !open" x-show="!open">
+                    <div>Show More Details</div>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                    </svg>
+                </div>
+                <div class="" x-show="open" x-transition x-cloak >
+                    <div class="flex flex-row items-center  dark:text-gray-200">
+                        <x-label class="mr-2 " for="misc" value="{{ __('Trim / Package Info:') }}" />
+                        No Ticket Info
+                    </div>
+                    <div class="flex flex-row items-center  dark:text-gray-200">
+                        <x-label class="mr-2 " for="info_type" value="{{ __('Type:') }}" />
+                        No Ticket Info
+                    </div>
+                    <div class="flex flex-row items-center  dark:text-gray-200">
+                        <x-label class="mr-2 " for="info_type" value="{{ __('Customer / Vehicle Info:') }}" />
+                        {{$ticket->info_number ?? ""}}
+                    </div>
+                    <div class="flex flex-row items-center  dark:text-gray-200">
+                        <x-label class="mr-2 " for="details" value="{{ __('Attachments:') }}" />
+                        No Attachments
+                    </div>
+                    <div class="flex flex-row items-center  dark:text-gray-200">
+                        <x-label class="mr-2 " for="details" value="{{ __('Details:') }}" />
+                        No Details
+                    </div>
+                    <hr class="mb-2 mt-2">
+                    <div class="flex flex-wrap justify-around">
+                        <x-button @click="" class="mt-2 mb-2">
+                            {{ __('Reassign') }}
+                        </x-button>
+                        <x-button wire:click="" class="mt-2 mb-2">
+                            {{ __('Attachment') }}
+                        </x-button>
+                        <x-button @click="" class="mt-2 mb-2">
+                            {{ __('Status') }}
+                        </x-button>
+                        <x-button @click="" class="mt-2 mb-2">
+                            {{ __('Resend') }}
+                        </x-button>
+                    </div>
+                    <hr class="mb-2 mt-2">
+                    <div x-on:click="open = !open" class="accordion items-center  dark:text-gray-200">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 15.75 7.5-7.5 7.5 7.5" />
+                    </svg>
+                    <div>Show Less Details</div>
+                    </div>
+                </div>
+            </div>
 
             @endforelse
         <div class="flex flex-row">
