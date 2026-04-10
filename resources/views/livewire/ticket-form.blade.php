@@ -69,8 +69,12 @@ new class extends Component {
         'info_number' => 'required|string|min:6|max:35|required_with:info_type',
         'details' => 'required|string|max:5000',
         'attachments' => 'nullable|array|max:5',
-        'attachments.*' => 'file|mimes:pdf,png,jpg,jpeg,webp|max:20480',
-	]);
+        'attachments.*' => 'file|mimes:pdf,png,jpg,jpeg,webp,doc,docx,xls,xlsx,ppt,pptx,mp4,mov,avi,webm|max:20480',
+	],[
+        'attachments.*.mimes' => 'Each attachment must be a valid file type(PDF, Video, Image, Office Document). Try again.',
+    ], [
+        'attachments.*' => 'attachment',
+    ]);
     $specialistId = $this->determineSpecialist();
     $paths = [];
     foreach ($this->attachments as $file) {
@@ -227,6 +231,15 @@ new class extends Component {
     @enderror
 
     <input wire:model.defer="attachments" accept="application/pdf,image/*" type="file" multiple="multiple" name="file" id="file" class="mt-1 block mb-2 rounded-md text-gray-600 border-gray-300   dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 shadow-sm">
+    @error('attachments')
+        <p class="text-red-400 text-xs mt-2 mb-2">{{$message}}</p>
+    @enderror
+
+    @if ($errors->has('attachments.*'))
+        <p class="text-red-400 text-xs mt-2 mb-2">
+            {{ $errors->first('attachments.*') }}
+        </p>
+    @endif
 
     <x-button class="mt-4 mb-6" type="submit">
         {{ __('Send') }}
