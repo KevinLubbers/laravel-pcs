@@ -100,10 +100,11 @@ class MaintenanceList extends Component
         */
         $this->divisions = Division::select('id', 'name', 'specialist_id')
         ->with('users:id,name') // No pagination for users
+        ->orderBy('name', 'asc')
         ->get();
 
         foreach ($this->divisions as $division) {
-            $division->models = $division->models()->select('id', 'name', 'division_id', 'specialist_id')->get();
+            $division->models = $division->models()->select('id', 'name', 'division_id', 'specialist_id')->orderBy('name', 'asc')->get();
         }
 
 

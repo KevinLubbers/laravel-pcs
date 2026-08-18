@@ -102,7 +102,7 @@ new class extends Component {
 	}
     public function mount(){
         $this->tasks = TicketTask::all();
-        $this->divisions = Division::all();
+        $this->divisions = Division::orderBy('name', 'asc')->get();
     }
     public function changedDivision($divisionId) {
 	    $this->models = CarModel::where('division_id', $divisionId)->get();
