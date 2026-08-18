@@ -103,9 +103,11 @@ new class extends Component {
     public function mount(){
         $this->tasks = TicketTask::all();
         $this->divisions = Division::orderBy('name', 'asc')->get();
+        
     }
+
     public function changedDivision($divisionId) {
-	    $this->models = CarModel::where('division_id', $divisionId)->get();
+	    $this->models = CarModel::where('division_id', $divisionId)->orderBy('name', 'asc')->get();
 	    $this->model = null;
     }
 }; ?>
@@ -143,7 +145,7 @@ new class extends Component {
     @enderror
 
     <x-label class="mt-4" for="division" value="{{ __('Division') }}" />
-    <select wire:model="division" wire:change="changedDivision($event.target.value)" style="" class="mt-1 block mb-2 rounded-md text-gray-600 border-gray-300   dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 shadow-sm">
+    <select wire:model="division" id="division" wire:change="changedDivision($event.target.value)" style="" class="mt-1 block mb-2 rounded-md text-gray-600 border-gray-300   dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 shadow-sm">
         <option value="0" selected>Select Division</option>
         @forelse($divisions ?? [] as $division)
             <option value="{{$division->id}}">{{$division->name}}</option>
@@ -258,4 +260,16 @@ new class extends Component {
     }
 </style>
 </div>
+@push('scripts')
+<script>
+window.addEventListener('pageshow', function () {
+        const division = document.getElementById('division');
+
+        if (division) {
+            division.value = 0;
+            division.dispatchEvent(new Event('change', { bubbles: true }));
+        }
+    });
+</script>
+@endpush
 </form>

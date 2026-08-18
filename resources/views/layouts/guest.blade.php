@@ -31,5 +31,6 @@ x-bind:class="{'dark': darkMode}">
         </div>
 
         @livewireScripts
+        @stack('scripts')
     </body>
 </html>
