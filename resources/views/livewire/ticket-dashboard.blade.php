@@ -5,7 +5,7 @@
             {{session('error')}}
         </div>
     @endif
-    <div class="flex items-center text-sm leading-relaxedml-3 text-xl font-semibold text-gray-900 dark:text-white">
+    <div class="flex items-center text-sm leading-relaxed text-xl font-semibold text-gray-900 dark:text-white">
         All Tickets List:
     </div>
 

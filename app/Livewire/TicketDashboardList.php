@@ -33,7 +33,7 @@ class TicketDashboardList extends Component
 
     public function mount()
     {
-        $this->ticketsPerPage = session('tickets_per_page', 5);
+        $this->ticketsPerPage = session('tickets_per_page', 50);
     }
     #[On(event: 'status-changed')]
     #[On(event: 'ticket-reassigned')]

@@ -5,7 +5,7 @@
             {{session('error')}}
         </div>
     @endif
-    <div class="flex items-center text-sm leading-relaxedml-3 text-xl font-semibold text-gray-900 dark:text-white">
+    <div class="flex items-center text-sm leading-relaxed text-xl font-semibold text-gray-900 dark:text-white">
         All Tickets List:
     </div>
 
@@ -13,13 +13,16 @@
     <p class="mt-4 text-gray-500 dark:text-gray-400 text-sm leading-relaxed">
         <div wire:poll.120s>
             @forelse ($tickets as $ticket)
-            <div x-data="{ open:false }" class="border dark:border-gray-400 rounded-lg shadow p-2 mb-2 bg-white dark:bg-gray-900">
+            <div x-data="{ open:false }" class="border flex flex-row dark:border-gray-400 rounded-lg shadow p-2 mb-2 bg-white dark:bg-gray-900">
+                <div class="flex flex-col">
+                <div>
                 <div x-data="{saved:false}" x-show="saved" x-transition x-cloak
                 @item-updated.window="if ($event.detail.id === {{ $ticket->id }}) {saved = true; setTimeout(() => saved = false, 5000);}" >
                     <x-label class="text-green-500 dark:text-green-400" for="hidden" value="{{__('Updated ✓') }}" />
                 </div>
-                <div class="flex flex-row items-center">
-                    <x-label class="mr-2" for="status" value="{{ __('Status:') }}" />
+                <div class="gap-4 flex flex-row" >
+                <div class="flex flex-row items-center gap-2">
+                    <x-label for="status" value="{{ __('Status:') }}" />
                     <span class="inline-block w-3 h-3 rounded-full mr-2
                         @switch($ticket->status)
                             @case('unresolved') bg-red-500 @break
@@ -31,17 +34,15 @@
                     </span>
                     <x-label class="" for="text" value="{{ $ticket->status_label }}" x-show="open" />
                 </div>
-                <p class="flex flex-row items-center  dark:text-gray-200"><x-label class="mr-2" for="id" value="{{ __('Ticket Id:') }}" /> {{ $ticket->display_number ?? "No Ticket Id"}}</p>
-                <p class="flex flex-row items-center  dark:text-gray-200"><x-label class="mr-2" for="id" value="{{ __('Date Submitted:') }}" /> {{ $ticket->created_at?->setTimezone('America/New_York')->format('F d, Y g:i A') ?? "No Date"}}</p>
-                <hr class="mb-2 mt-2">
-                <p class="flex flex-row items-center  dark:text-gray-200"><x-label class="mr-2" for="specialist" value="{{ __('Assigned To:') }}" />{{ $ticket->users->name ?? "No Specialist"}}</p>
-                <p class="flex flex-row items-center  dark:text-gray-200"><x-label class="mr-2" for="email" value="{{ __('Submitted By:') }}" />{{ $ticket->email }}</p>
-                <p class="flex flex-row items-center  dark:text-gray-200"><x-label class="mr-2" for="task" value="{{ __('Task:') }}" />{{ $ticket->tasks->name ?? "No Task"}}</p>
-                <hr class="mb-2 mt-2">
-                <p class="flex flex-row items-center  dark:text-gray-200"><x-label class="mr-2" for="year" value="{{ __('Year:') }}" />{{ $ticket->year }}</p>
-                <p class="flex flex-row items-center  dark:text-gray-200"><x-label class="mr-2" for="division" value="{{ __('Division:') }}" />{{ $ticket->divisions->name}}</p>
-                <p class="flex flex-row items-center  dark:text-gray-200"><x-label class="mr-2" for="model" value="{{ __('Model:') }}" />{{ $ticket->models->name}}</p>
-                <hr class="mb-2 mt-2">
+                    <p class="ml-2 flex flex-col items-center  dark:text-gray-200"><x-label class="mr-2" for="id" value="{{ __('Ticket Id:') }}" /> {{ $ticket->display_number ?? "No Ticket Id"}}</p>
+                    <p class="flex flex-col items-center  dark:text-gray-200"><x-label class="mr-2" for="id" value="{{ __('Date Submitted:') }}" /> {{ $ticket->created_at?->setTimezone('America/New_York')->format('F d, Y g:i A') ?? "No Date"}}</p>
+                    <hr class="mb-2 mt-2">
+                    <p class="flex flex-col items-center  dark:text-gray-200"><x-label class="mr-2" for="specialist" value="{{ __('Assigned To:') }}" />{{ $ticket->users->name ?? "No Specialist"}}</p>
+                    <p class="flex flex-col items-center  dark:text-gray-200"><x-label class="mr-2" for="email" value="{{ __('Submitted By:') }}" />{{ $ticket->email }}</p>
+                    <p class="flex flex-col items-center  dark:text-gray-200"><x-label class="mr-2" for="task" value="{{ __('Task:') }}" />{{ $ticket->tasks->name ?? "No Task"}}</p>
+                </div>
+</div>
+<div>
                 <div class="accordion items-center  dark:text-gray-200" x-transition x-on:click="open = !open" x-show="!open">
                     <div>Show More Details</div>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
@@ -49,6 +50,12 @@
                     </svg>
                 </div>
                 <div class="" x-show="open" x-transition x-cloak >
+                <div class="gap-2 flex flex-row">
+                    <hr class="mb-2 mt-2">
+                    <p class="flex flex-row items-center  dark:text-gray-200"><x-label class="mr-2" for="year" value="{{ __('Year:') }}" />{{ $ticket->year }}</p>
+                    <p class="flex flex-row items-center  dark:text-gray-200"><x-label class="mr-2" for="division" value="{{ __('Division:') }}" />{{ $ticket->divisions->name}}</p>
+                    <p class="flex flex-row items-center  dark:text-gray-200"><x-label class="mr-2" for="model" value="{{ __('Model:') }}" />{{ $ticket->models->name}}</p>
+                </div>
                     <div class="flex flex-row items-center  dark:text-gray-200">
                         <x-label class="mr-2 " for="misc" value="{{ __('Trim / Package Info:') }}" />
                         {{$ticket->misc}}
@@ -95,7 +102,8 @@
                     </div>
                 </div>
             </div>
-
+</div>
+</div>
             @empty
 
             @endforelse
