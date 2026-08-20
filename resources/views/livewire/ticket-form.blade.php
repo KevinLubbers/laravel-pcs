@@ -121,7 +121,7 @@ new class extends Component {
     @enderror
 
     <x-label class="mt-4" for="task" value="{{ __('Task') }}" />
-    <select wire:model.defer="task" style="" class="mt-1 block mb-2 rounded-md text-gray-600 border-gray-300   dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 shadow-sm">
+    <select wire:model.defer="task" id="task" class="mt-1 block mb-2 rounded-md text-gray-600 border-gray-300   dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 shadow-sm">
         <option value="0" selected>Select Task</option>
         @forelse($tasks ?? [] as $task)
             <option value="{{$task->id}}">{{$task->name}}</option>
@@ -134,7 +134,7 @@ new class extends Component {
     @enderror
 
     <x-label class="mt-4" for="year" value="{{ __('Vehicle Year') }}" />
-    <select style="" wire:model.defer="year" class="mt-1 block mb-2 rounded-md text-gray-600 border-gray-300   dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 shadow-sm">
+    <select wire:model.defer="year" id="year" class="mt-1 block mb-2 rounded-md text-gray-600 border-gray-300   dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 shadow-sm">
         <option value="0" selected>Select Year</option>
         @foreach(range(now()->year - 1, now()->year + 2) as $y)
             <option value="{{ $y }}">{{ $y }}</option>
@@ -264,10 +264,20 @@ new class extends Component {
 <script>
 window.addEventListener('pageshow', function () {
         const division = document.getElementById('division');
+        const year = document.getElementById('year');
+        const task = document.getElementById('task');
 
         if (division) {
             division.value = 0;
             division.dispatchEvent(new Event('change', { bubbles: true }));
+        }
+        if (year) {
+            year.value = 0;
+            year.dispatchEvent(new Event('change', { bubbles: true }));
+        }
+        if (task) {
+            task.value = 0;
+            task.dispatchEvent(new Event('change', { bubbles: true }));
         }
     });
 </script>
