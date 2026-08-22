@@ -1,4 +1,24 @@
-<div x-data="{ view: 'card' }" @set-view.window="view = $event.detail">
+<div
+    x-data="{
+        view: new URLSearchParams(window.location.search).get('view') || 'card',
+
+        setView(value) {
+            this.view = value;
+
+            const url = new URL(window.location);
+            url.searchParams.set('view', value);
+
+            window.history.pushState({}, '', url);
+        },
+
+        init() {
+            window.addEventListener('popstate', () => {
+                this.view =
+                    new URLSearchParams(window.location.search).get('view') || 'card';
+            });
+        }
+    }"
+>
     <div class="p-6 lg:p-8 bg-white dark:bg-gray-800 dark:bg-gradient-to-bl dark:from-gray-700/50 dark:via-transparent border-b border-gray-200 dark:border-gray-700">
 
         <h1 class="mt-2 text-2xl font-medium text-gray-900 dark:text-white">
@@ -9,8 +29,8 @@
         This is where you manage your tickets and your team's tickets 
         </p>
         <div class="flex flex-row items-center gap-4 mt-8">
-            <x-label x-bind:class="{'underline underline-offset-4': view === 'card'}" class="cursor-pointer" @click="$dispatch('set-view', 'card')" value="Card View" />
-            <x-label x-bind:class="{'underline underline-offset-4': view === 'list'}" class="cursor-pointer" @click="$dispatch('set-view', 'list')" value="ListView" />
+            <x-label x-bind:class="{'underline underline-offset-4': view === 'card'}" class="cursor-pointer" @click="setView('card')" value="Card View" />
+            <x-label x-bind:class="{'underline underline-offset-4': view === 'list'}" class="cursor-pointer" @click="setView('list')" value="ListView" />
         </div>
         <div>
             <livewire:ticket-modal />
