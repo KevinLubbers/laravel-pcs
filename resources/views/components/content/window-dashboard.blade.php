@@ -37,7 +37,7 @@
         </div>
     </div>
 
-    <template x-if="view === 'card'">
+    <div x-show="view === 'card'">
         <div class="bg-gray-200 dark:bg-gray-800 bg-opacity-25 grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 p-6 lg:p-8">
             <div>
                 <livewire:ticket-self-dashboard />
@@ -46,12 +46,12 @@
                 <livewire:ticket-dashboard />    
             </div>
         </div>
-    </template>
-    <template x-if="view === 'list'">
+    </div>
+    <div x-show="view === 'list'">
         <div  class="bg-gray-200 dark:bg-gray-800 bg-opacity-25 grid grid-cols-1 gap-6 lg:gap-8 p-6 lg:p-8">
             <div>
                 <livewire:ticket-dashboard-list />    
             </div>
         </div>
-    </template>
+    </div>
 </div>
