@@ -20,7 +20,7 @@
                         @item-updated.window="if ($event.detail.id === {{ $ticket->id }}) {saved = true; setTimeout(() => saved = false, 5000);}">
                         <x-label class="text-green-500 dark:text-green-400" for="hidden" value="{{__('Updated ✓') }}" />
                     </div>
-                    <div class="gap-4 grid grid-cols-6 mb-2">
+                    <div class="gap-4 grid sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-6 mb-2">
                         <div class="flex flex-row gap-2  justify-center items-baseline">
                             <x-label for="status" value="{{ __('Status:') }}" />
                             <span class="w-3 h-3 rounded-full 
@@ -48,7 +48,7 @@
                         </svg>
                     </div>
                     <div class="" x-show="open" x-transition x-cloak>
-                        <div class="grid grid-cols-6 gap-4" >
+                        <div class="grid sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-6 gap-4" >
                                 <p class="flex flex-col items-center  dark:text-gray-200"><x-label class="mr-2" for="year" value="{{ __('Year:') }}" />{{ $ticket->year }}</p>
                                 <p class="flex flex-col items-center  dark:text-gray-200"><x-label class="mr-2" for="division" value="{{ __('Division:') }}" />{{ $ticket->divisions->name}}</p>
                                 <p class="flex flex-col items-center  dark:text-gray-200"><x-label class="mr-2" for="model" value="{{ __('Model:') }}" />{{ $ticket->models->name}}</p>
