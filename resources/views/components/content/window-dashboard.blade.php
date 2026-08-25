@@ -30,7 +30,7 @@
         </p>
         <div class="flex flex-row items-center gap-4 mt-8">
             <x-label x-bind:class="{'underline underline-offset-4': view === 'card'}" class="cursor-pointer" @click="setView('card')" value="Card View" />
-            <x-label x-bind:class="{'underline underline-offset-4': view === 'list'}" class="cursor-pointer" @click="setView('list')" value="ListView" />
+            <x-label x-bind:class="{'underline underline-offset-4': view === 'list'}" class="cursor-pointer" @click="setView('list')" value="List View" />
         </div>
         <div>
             <livewire:ticket-modal />
